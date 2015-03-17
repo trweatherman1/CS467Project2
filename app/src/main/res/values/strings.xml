@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">CS467Project2</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_main_menu">MainMenu</string>
+    <string name="title_activity_player__name">Player_Name</string>
+    <string name="player">Player Name</string>
+    <string name="play">Play</string>
+    <string name="view">View Hand</string>
+    <string name="name">Enter Player Name</string>
+    <string name="submit">Submit</string>
+    <string name="title_activity_play">Play</string>
+    <string name="title_activity_view__hand">View_Hand</string>
+
+</resources>
