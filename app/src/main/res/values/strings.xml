@@ -13,5 +13,6 @@
     <string name="submit">Submit</string>
     <string name="title_activity_play">Play</string>
     <string name="title_activity_view__hand">View_Hand</string>
+    <string name="wins">=wins=</string>
 
 </resources>
