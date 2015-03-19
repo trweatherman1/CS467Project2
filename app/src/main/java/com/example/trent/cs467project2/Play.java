@@ -19,11 +19,7 @@ public class Play extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        Play_Hand_Fragment play_hand_fragment = new Play_Hand_Fragment();
-        fragmentTransaction.replace(R.id.fragment2, play_hand_fragment);
-        fragmentTransaction.commit();
+        setContentView(R.layout.play_hand);
     }
 
     @Override
