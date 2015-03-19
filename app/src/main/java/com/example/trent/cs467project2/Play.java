@@ -1,11 +1,13 @@
 package com.example.trent.cs467project2;
 
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
+import android.widget.ImageView;
 
 
 public class Play extends Activity {
@@ -15,8 +17,21 @@ public class Play extends Activity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_play);
+        new Thread(new Runnable() {
+            public void run() {
+                ImageView image1 = (ImageView) findViewById(R.id.card1);
+                image1.setImageResource(R.drawable.back);
+                ImageView image2 = (ImageView) findViewById(R.id.card2);
+                image2.setImageResource(R.drawable.back);
+                ImageView image3 = (ImageView) findViewById(R.id.card3);
+                image3.setImageResource(R.drawable.back);
+                ImageView image4 = (ImageView) findViewById(R.id.card4);
+                image4.setImageResource(R.drawable.back);
+                ImageView image5 = (ImageView) findViewById(R.id.card5);
+                image5.setImageResource(R.drawable.back);
+            }
+        }).start();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

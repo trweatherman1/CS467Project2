@@ -42,4 +42,61 @@
     <string name="hold">HOLD</string>
     <string name="title_activity_win_list">WinList</string>
 
+    <array name="random_card">
+        <item>@drawable/ace_of_clubs</item>
+        <item>@drawable/ace_of_diamonds</item>
+        <item>@drawable/ace_of_hearts</item>
+        <item>@drawable/ace_of_spades</item>
+        <item>@drawable/c10_of_clubs</item>
+        <item>@drawable/c10_of_diamonds</item>
+        <item>@drawable/c10_of_hearts</item>
+        <item>@drawable/c10_of_spades</item>
+        <item>@drawable/c2_of_clubs</item>
+        <item>@drawable/c2_of_diamonds</item>
+        <item>@drawable/c2_of_hearts</item>
+        <item>@drawable/c2_of_spades</item>
+        <item>@drawable/c3_of_clubs</item>
+        <item>@drawable/c3_of_diamonds</item>
+        <item>@drawable/c3_of_hearts</item>
+        <item>@drawable/c3_of_spades</item>
+        <item>@drawable/c4_of_clubs</item>
+        <item>@drawable/c4_of_diamonds</item>
+        <item>@drawable/c4_of_hearts</item>
+        <item>@drawable/c4_of_spades</item>
+        <item>@drawable/c5_of_clubs</item>
+        <item>@drawable/c5_of_diamonds</item>
+        <item>@drawable/c5_of_hearts</item>
+        <item>@drawable/c5_of_spades</item>
+        <item>@drawable/c6_of_clubs</item>
+        <item>@drawable/c6_of_diamonds</item>
+        <item>@drawable/c6_of_hearts</item>
+        <item>@drawable/c6_of_spades</item>
+        <item>@drawable/c7_of_clubs</item>
+        <item>@drawable/c7_of_diamonds</item>
+        <item>@drawable/c7_of_hearts</item>
+        <item>@drawable/c7_of_spades</item>
+        <item>@drawable/c8_of_clubs</item>
+        <item>@drawable/c8_of_diamonds</item>
+        <item>@drawable/c8_of_hearts</item>
+        <item>@drawable/c8_of_spades</item>
+        <item>@drawable/c9_of_clubs</item>
+        <item>@drawable/c9_of_diamonds</item>
+        <item>@drawable/c9_of_hearts</item>
+        <item>@drawable/c9_of_spades</item>
+        <item>@drawable/jack_of_clubs</item>
+        <item>@drawable/jack_of_diamonds</item>
+        <item>@drawable/jack_of_hearts</item>
+        <item>@drawable/jack_of_spades</item>
+        <item>@drawable/king_of_clubs</item>
+        <item>@drawable/king_of_diamonds</item>
+        <item>@drawable/king_of_hearts</item>
+        <item>@drawable/king_of_spades</item>
+        <item>@drawable/queen_of_clubs</item>
+        <item>@drawable/queen_of_diamonds</item>
+        <item>@drawable/queen_of_hearts</item>
+        <item>@drawable/queen_of_spades</item>
+    </array>
+
 </resources>
+
+

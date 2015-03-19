@@ -75,7 +75,7 @@
 
         <ImageView
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:id="@+id/card1"
             android:layout_weight="1"
             android:paddingLeft="7dp"
@@ -83,7 +83,7 @@
 
         <ImageView
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:id="@+id/card2"
             android:layout_weight="1"
             android:paddingLeft="7dp"
@@ -92,7 +92,7 @@
 
         <ImageView
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:id="@+id/card3"
             android:layout_weight="1"
             android:paddingLeft="7dp"
@@ -101,7 +101,7 @@
 
         <ImageView
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:id="@+id/card4"
             android:layout_weight="1"
             android:paddingLeft="7dp"
@@ -110,7 +110,7 @@
 
         <ImageView
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:id="@+id/card5"
             android:layout_weight="1"
             android:paddingLeft="7dp"
