@@ -18,7 +18,7 @@ public class View_Hand extends ListActivity implements View.OnClickListener{
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        //setContentView(R.layout.activity_view__hand);
+        //setContentView(R.layout.activity_view_hand);
         String[] cards = new String[] { "250 Straight Flush", "100 Four of a Kind", "75 Full House",
                 "50 Straight", "25 Three of a Kind", "10 Two Pair", "5 Pair" };
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
