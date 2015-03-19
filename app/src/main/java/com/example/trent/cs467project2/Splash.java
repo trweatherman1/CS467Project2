@@ -42,6 +42,7 @@ public class Splash extends Activity {
     public void goToNextScreen(){
         Intent nextScreen = new Intent(this, nextActivity);
         this.startActivity(nextScreen);
+        finish();
 
     }
 }

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1"
+    android:background="@drawable/background">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/two_pair"
+        android:id="@+id/textView16"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.11"
+        android:textSize="30sp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="169dp"
+        android:layout_gravity="center_horizontal"
+        android:weightSum="1">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView36"
+            android:layout_weight=".2"
+            android:background="@drawable/c3_of_hearts" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView37"
+            android:layout_weight=".2"
+            android:background="@drawable/c3_of_spades" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView38"
+            android:layout_weight=".2"
+            android:background="@drawable/c8_of_clubs" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView39"
+            android:layout_weight=".2"
+            android:background="@drawable/c8_of_diamonds" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView40"
+            android:layout_weight=".2"
+            android:background="@drawable/ace_of_spades" />
+
+    </LinearLayout>
+</LinearLayout>

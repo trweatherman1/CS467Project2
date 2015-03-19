@@ -15,5 +15,15 @@
     <string name="title_activity_view__hand">View_Hand</string>
     <string name="splash_screen">POKER</string>
     <string name="wins">=wins=</string>
+    <string name="poker">POKER</string>
+    <string name="royal_flush">Royal Flush - $1000</string>
+    <string name="straight_flush">Straight Flush - $250</string>
+    <string name="four_of_a_kind">Four of a Kind - $100</string>
+    <string name="full_house">Full House - $50</string>
+    <string name="flush">Flush - $30</string>
+    <string name="straight_hand">Straight - $25</string>
+    <string name="three_of_a_kind">Three of a Kind - $20</string>
+    <string name="two_pair">2 Pair - $10</string>
+    <string name="pair">Pair - $5</string>
 
 </resources>
