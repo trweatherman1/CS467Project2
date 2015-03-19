@@ -13,8 +13,11 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/name"
         android:id="@+id/textView"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_above="@+id/editText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="42dp"
+        android:background="@color/button_material_dark"
+        android:textColor="@android:color/white" />
 
     <Button
         android:layout_width="wrap_content"
@@ -23,7 +26,9 @@
         android:id="@+id/button4"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="52dp" />
+        android:layout_marginBottom="52dp"
+        android:background="@color/button_material_dark"
+        android:textColor="@android:color/white" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -33,6 +38,8 @@
         android:ems="10"
         android:id="@+id/editText"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="@color/background_material_dark"
+        android:textColor="@android:color/white" />
 
 </RelativeLayout>
