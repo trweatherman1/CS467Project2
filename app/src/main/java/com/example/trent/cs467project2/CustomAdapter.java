@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * Created by Trent on 3/18/2015.
 */
 public class CustomAdapter extends ArrayAdapter<String> {
-    private ArrayList<String> hand;
+    private ArrayList<String> hands;
 
     private Context context;
 
@@ -25,7 +25,7 @@ public class CustomAdapter extends ArrayAdapter<String> {
     public CustomAdapter(Context context, int textViewResourceId, ArrayList<String> dataItems) {
         super(context, textViewResourceId, dataItems);
         this.context = context;
-        this.hand = dataItems;
+        this.hands= dataItems;
         //this.hands = hands;
         viewSource = textViewResourceId;
 
@@ -36,16 +36,19 @@ public class CustomAdapter extends ArrayAdapter<String> {
 
         if (view == null)//Only create if null - recycling a good idea
         {
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService
+                    (Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(viewSource, parent, false);
         }
 
-        String handText = this.hand.get(position);
+        //String valueText = this.values.get(position);
+        String handText = this.hands.get(position);
 
         //Get the views from the list item XML
         TextView handPosition = (TextView) view.findViewById(R.id.textView3);
-        // iButton = (TextView) view.findViewById(R.id.textView5);
+        //TextView valuePosition = (TextView) view.findViewById(R.id.textView4);
 
+        //valuePosition.setText(valueText);
         handPosition.setText(handText);
 
         return(view);

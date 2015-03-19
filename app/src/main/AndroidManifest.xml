@@ -39,7 +39,8 @@
         </activity>
         <activity
             android:name=".WinList"
-            android:label="@string/title_activity_win_list" >
+            android:label="@string/title_activity_win_list"
+            android:screenOrientation="landscape">
         </activity>
     </application>
 
