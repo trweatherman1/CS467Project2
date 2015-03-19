@@ -1,16 +1,9 @@
 package com.example.trent.cs467project2;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
-import android.app.Fragment;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 
 
 public class Play extends ActionBarActivity {
@@ -18,9 +11,9 @@ public class Play extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.play_hand);
+        setContentView(R.layout.activity_play);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -43,5 +36,4 @@ public class Play extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
 }
