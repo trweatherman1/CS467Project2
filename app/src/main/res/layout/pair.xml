@@ -59,4 +59,14 @@
             android:background="@drawable/c9_of_spades" />
 
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/pair_explain"
+        android:id="@+id/textView20"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.11"
+        android:textSize="25sp" />
 </LinearLayout>

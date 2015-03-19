@@ -59,4 +59,14 @@
             android:background="@drawable/queen_of_hearts" />
 
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/three_explain"
+        android:id="@+id/textView24"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.11"
+        android:textSize="30sp" />
 </LinearLayout>

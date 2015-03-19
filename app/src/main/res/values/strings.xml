@@ -25,5 +25,14 @@
     <string name="three_of_a_kind">Three of a Kind - $20</string>
     <string name="two_pair">2 Pair - $10</string>
     <string name="pair">Pair - $5</string>
+    <string name="royal_explain">All cards are the same suit, run in sequence A, K, Q K, 10</string>
+    <string name="straight_flush_explain">All cards are the same suit and run in sequence</string>
+    <string name="four_explain">Four cards of the same rank</string>
+    <string name="full_house_explain">A pair and a three of a kind</string>
+    <string name="flush_explain">All cards are the same suit.</string>
+    <string name="straight_explain">All cards run in sequence.</string>
+    <string name="three_explain">Three cards of the same rank</string>
+    <string name="two_pair_explain">Two pairs of cards</string>
+    <string name="pair_explain">Two of the same cards with a rank of 10 or more</string>
 
 </resources>
