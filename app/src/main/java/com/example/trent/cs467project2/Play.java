@@ -1,6 +1,7 @@
 package com.example.trent.cs467project2;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -80,6 +81,9 @@ public class Play extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 
+        Intent option1 = new Intent(this, MainMenu.class);
+        Intent option2 = new Intent(this, View_Hand.class);
+
         if (v == hold_button1) {
             if (play_counter == 0) {
                 Toast.makeText(getApplicationContext(),
@@ -124,6 +128,14 @@ public class Play extends Activity implements View.OnClickListener {
 
         if (v == deal_button) {
             dealHelp();
+        }
+
+        if(v == menu_button){
+            this.startActivity(option1);
+        }
+
+        if(v== win_button){
+            this.startActivity(option2);
         }
     }
 
