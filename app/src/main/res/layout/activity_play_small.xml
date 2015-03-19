@@ -3,17 +3,13 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
     tools:context="com.example.trent.cs467project2.Play" tools:ignore="MergeRootFrame"
     android:background="@drawable/background"
-    android:orientation="vertical"
-    android:weightSum="1">
+    android:orientation="vertical">
+    <fragment
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:name="com.example.trent.cs467project2.Play_Hand_Fragment"
+        android:id="@+id/fragment2"
+        android:layout_gravity="right" />
 
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight=".1">
-
-    </LinearLayout>
 </LinearLayout>
 
