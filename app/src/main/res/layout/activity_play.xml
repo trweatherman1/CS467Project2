@@ -6,7 +6,7 @@
     android:weightSum="1">
 
     <RelativeLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
@@ -69,7 +69,7 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="175dp"
         android:weightSum="5">
 
@@ -118,8 +118,8 @@
     </LinearLayout>
 
     <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <Button
             android:layout_width="wrap_content"
