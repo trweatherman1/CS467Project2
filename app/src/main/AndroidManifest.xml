@@ -37,6 +37,10 @@
             android:label="@string/title_activity_view__hand"
             android:screenOrientation="landscape" >
         </activity>
+        <activity
+            android:name=".WinList"
+            android:label="@string/title_activity_win_list" >
+        </activity>
     </application>
 
 </manifest>

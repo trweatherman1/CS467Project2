@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 /**
  * Created by cody on 3/19/15.
- */
+
 public class Play_Hand_Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -17,3 +17,4 @@ public class Play_Hand_Fragment extends Fragment {
         return inflater.inflate(R.layout.play_hand, container, false);
     }
 }
+ */

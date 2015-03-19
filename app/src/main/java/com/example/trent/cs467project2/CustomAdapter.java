@@ -15,41 +15,40 @@ import java.util.ArrayList;
  * Created by Trent on 3/18/2015.
 */
 public class CustomAdapter extends ArrayAdapter<String> {
-    private ArrayList<String> amount;
-
-    private ArrayList<Drawable> images;
+    private ArrayList<String> hand;
 
     private Context context;
 
     int viewSource;
 
 
-    public CustomAdapter(Context context, int textViewResourceId, ArrayList<String> dataItems,
-                         ArrayList<Drawable> images) {
+    public CustomAdapter(Context context, int textViewResourceId, ArrayList<String> dataItems) {
         super(context, textViewResourceId, dataItems);
         this.context = context;
-        this.amount = dataItems;
-        this.images = images;
+        this.hand = dataItems;
+        //this.hands = hands;
         viewSource = textViewResourceId;
 
     }
 
     public View getView(int position, View listItemView, ViewGroup parent) {
-        View v = listItemView;
+        View view = listItemView;
 
-        if (v == null)//Only create if null - recycling a good idea
+        if (view == null)//Only create if null - recycling a good idea
         {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = inflater.inflate(viewSource, parent, false);
+            view = inflater.inflate(viewSource, parent, false);
         }
 
-        //String itemText = this.text.get(position);
+        String handText = this.hand.get(position);
 
         //Get the views from the list item XML
-        TextView bTitle = (TextView) v.findViewById(R.id.textView4);
-        TextView iButton = (TextView) v.findViewById(R.id.textView5);
+        TextView handPosition = (TextView) view.findViewById(R.id.textView3);
+        // iButton = (TextView) view.findViewById(R.id.textView5);
 
-        return (v);
+        handPosition.setText(handText);
+
+        return(view);
     }
 }
 

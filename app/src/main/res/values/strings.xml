@@ -40,5 +40,6 @@
     <string name="deal">DEAL</string>
     <string name="win_hand">WINS</string>
     <string name="hold">HOLD</string>
+    <string name="title_activity_win_list">WinList</string>
 
 </resources>
