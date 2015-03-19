@@ -39,5 +39,6 @@
     <string name="menu">MENU</string>
     <string name="deal">DEAL</string>
     <string name="win_hand">WINS</string>
+    <string name="hold">HOLD</string>
 
 </resources>
