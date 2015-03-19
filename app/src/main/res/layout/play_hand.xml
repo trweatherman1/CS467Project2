@@ -1,6 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:weightSum="1">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+        android:layout_width="132dp"
+        android:layout_height="wrap_content"
+        android:text="@string/hands_played"
+        android:id="@+id/textView4"
+        android:layout_weight="0.04"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:textColor="@android:color/black" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/view_hands_counter"
+            android:layout_weight="0.04"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/textView4"
+            android:layout_toEndOf="@+id/textView4"
+            android:textColor="@android:color/black"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bank"
+            android:id="@+id/textView5"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@android:color/black"
+            android:layout_alignTop="@+id/bank_counter"
+            android:layout_toLeftOf="@+id/bank_counter"
+            android:layout_toStartOf="@+id/bank_counter" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bank_counter"
+            android:layout_marginRight="44dp"
+            android:layout_marginEnd="44dp"
+            android:layout_alignBottom="@+id/view_hands_counter"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:textColor="@android:color/black"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/player_name"
+            android:textStyle="bold"
+            android:textSize="30dp"
+            android:textColor="@android:color/black"
+            android:layout_below="@+id/view_hands_counter"
+            android:layout_centerHorizontal="true"
+            android:text="PLAYER&apos;s Hand:" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="175dp"
+        android:weightSum="5">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/card1"
+            android:layout_weight="1"
+            android:paddingLeft="7dp"
+            android:paddingRight="7dp"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/card2"
+            android:layout_weight="1"
+            android:paddingLeft="7dp"
+            android:paddingRight="7dp"/>
+
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/card3"
+            android:layout_weight="1"
+            android:paddingLeft="7dp"
+            android:paddingRight="7dp"/>
+
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/card4"
+            android:layout_weight="1"
+            android:paddingLeft="7dp"
+            android:paddingRight="7dp"/>
+
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/card5"
+            android:layout_weight="1"
+            android:paddingLeft="7dp"
+            android:paddingRight="7dp"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/menu"
+            android:id="@+id/button5"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/button6"
+            android:layout_toStartOf="@+id/button6"
+            android:layout_marginRight="41dp"
+            android:layout_marginEnd="41dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/deal"
+            android:id="@+id/button6"
+            android:layout_alignBottom="@+id/button5"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/win_hand"
+            android:id="@+id/button7"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/button6"
+            android:layout_toEndOf="@+id/button6"
+            android:layout_marginLeft="41dp"
+            android:layout_marginStart="41dp" />
+    </RelativeLayout>
 
 </LinearLayout>

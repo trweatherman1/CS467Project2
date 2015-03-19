@@ -34,5 +34,10 @@
     <string name="three_explain">Three cards of the same rank</string>
     <string name="two_pair_explain">Two pairs of cards</string>
     <string name="pair_explain">Two of the same cards with a rank of 10 or more</string>
+    <string name="hands_played">Hands played: </string>
+    <string name="bank">Bank: $</string>
+    <string name="menu">MENU</string>
+    <string name="deal">DEAL</string>
+    <string name="win_hand">WINS</string>
 
 </resources>
