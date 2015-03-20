@@ -15,7 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
-public class Player_Name extends Activity implements View.OnClickListener{//implements View.OnClickListener {
+public class Player_Name extends Activity implements View.OnClickListener {
     Button submit;
     EditText editText1;
 
@@ -26,47 +26,13 @@ public class Player_Name extends Activity implements View.OnClickListener{//impl
         setContentView(R.layout.activity_player__name);
 
         editText1 = (EditText) findViewById(R.id.editText);
-        //editText1.setOnClickListener(this);
+
         submit.findViewById(R.id.button4);
         submit.setOnClickListener(this);
         restore(savedInstanceState);
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle savedInstanceState){
-        if(savedInstanceState != null){
-            super.onRestoreInstanceState(savedInstanceState);
-            String name = editText1.getText().toString();
-            savedInstanceState.putString(AppHand.NAME, name);
-        }
 
-    }
-
-    public void restore(Bundle savedInstanceState){
-        if(savedInstanceState != null){
-            String name = savedInstanceState.getString(AppHand.NAME, "No Name");
-            editText1.setText(name);
-        }
-    }
-
-    public void submit(){
-        SharedPreferences settings = getSharedPreferences(AppHand.NAME, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
-
-        String name = editText1.getText().toString();
-        editor.putString(AppHand.NAME, name);
-
-        editor.commit();
-    }
-
-    @Override
-    public void onClick(View v) {
-        if(v == submit){
-            submit();
-        }
-    }
-
-    /*
     private void restore(Bundle savedInstanceState) {
         if (savedInstanceState != null) {
             String name = savedInstanceState.getString(AppHand.NAME, "No Name");
@@ -78,7 +44,7 @@ public class Player_Name extends Activity implements View.OnClickListener{//impl
 
 
     public void submit() {
-        SharedPreferences settings = getSharedPreferences(AppHand.NAME,Context.MODE_PRIVATE);
+        SharedPreferences settings = getSharedPreferences(AppHand.PREFS,Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
 
         String name = editText1.getText().toString();
@@ -104,14 +70,15 @@ public class Player_Name extends Activity implements View.OnClickListener{//impl
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(this, MainMenu.class);
+        //Intent intent = new Intent(this, MainMenu.class);
 
         if( v == submit){
-            //submit();
+            submit();
+            Intent intent = new Intent(this, MainMenu.class);
             this.startActivity(intent);
 
         }
     }
-    */
+
 }
 
