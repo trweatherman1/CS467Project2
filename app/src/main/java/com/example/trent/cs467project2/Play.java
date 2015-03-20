@@ -19,8 +19,10 @@ public class Play extends Activity implements View.OnClickListener {
     ImageView image1, image2, image3, image4, image5;
     Boolean hold1, hold2, hold3, hold4, hold5;
     Button hold_button1, hold_button2, hold_button3, hold_button4, hold_button5;
-    int play_counter, int_hand_counter, int_bank_counter;
+    int play_counter, int_hand_counter, int_bank_counter, choice1, choice2, choice3, choice4, choice5;
     TextView hand_counter, bank_counter;
+    String card1, card2, card3, card4, card5;
+    Card[] cards;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,37 +152,141 @@ public class Play extends Activity implements View.OnClickListener {
         int_hand_counter++;
 
         if (!hold1) {
-            int choice = (int) (Math.random() * images.length());
-            image1.setImageResource(images.getResourceId(choice, R.drawable.ace_of_clubs));
+            choice1 = (int) (Math.random() * images.length());
+            image1.setImageResource(images.getResourceId(choice1, R.drawable.ace_of_clubs));
+            card1 = images.getString(choice1);
         }
         if (!hold2) {
-            int choice2 = (int) (Math.random() * images.length());
+            choice2 = (int) (Math.random() * images.length());
             image2.setImageResource(images.getResourceId(choice2, R.drawable.ace_of_clubs));
+            card2 = images.getString(choice2);
         }
         if (!hold3) {
-            int choice3 = (int) (Math.random() * images.length());
+            choice3 = (int) (Math.random() * images.length());
             image3.setImageResource(images.getResourceId(choice3, R.drawable.ace_of_clubs));
+            card3 = images.getString(choice3);
         }
         if (!hold4) {
-            int choice4 = (int) (Math.random() * images.length());
+            choice4 = (int) (Math.random() * images.length());
             image4.setImageResource(images.getResourceId(choice4, R.drawable.ace_of_clubs));
+            card4 = images.getString(choice4);
         }
         if (!hold5) {
-            int choice5 = (int) (Math.random() * images.length());
+            choice5 = (int) (Math.random() * images.length());
             image5.setImageResource(images.getResourceId(choice5, R.drawable.ace_of_clubs));
+            card5 = images.getString(choice5);
         }
         images.recycle();
         play_counter++;
         hand_counter.setText(int_hand_counter + "");
 
         if (play_counter == 2) {
-            Toast.makeText(getApplicationContext(), "Good Game!", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), "Good Game!", Toast.LENGTH_LONG).show();
             play_counter = 0;
             hold1 = false;
             hold2 = false;
             hold3 = false;
             hold4 = false;
             hold5 = false;
+            getWinner();
         }
+    }
+
+    private void getWinner(){
+        getCardNames();
+    }
+
+    private void getCardNames(){
+        int length = card1.length();
+        card1 = card1.substring(22);
+        card1 = card1.substring(0, length-4);
+        card2 = card2.substring(22);
+        card2 = card2.substring(0, length-4);
+        card3 = card3.substring(22);
+        card3 = card3.substring(0, length-4);
+        card4 = card4.substring(22);
+        card4 = card4.substring(0, length-4);
+        card5 = card5.substring(22);
+        card5 = card5.substring(0, length-4);
+        String card1_face = card1.substring(0,2);
+        String card2_face = card2.substring(0,2);
+        String card3_face = card3.substring(0,2);
+        String card4_face = card4.substring(0,2);
+        String card5_face = card5.substring(0,2);
+        length = card1.length();
+        String card1_suit = card1.substring(length-2, length);
+        length = card2.length();
+        String card2_suit = card2.substring(length-2, length);
+        length = card3.length();
+        String card3_suit = card3.substring(length-2, length);
+        length = card4.length();
+        String card4_suit = card4.substring(length-2, length);
+        length = card5.length();
+        String card5_suit = card5.substring(length-2, length);
+        cards = new Card[5];
+        cards[0] = new Card(getFace(card1_face), getSuit(card1_suit));
+        cards[1] = new Card(getFace(card2_face), getSuit(card2_suit));
+        cards[2] = new Card(getFace(card3_face), getSuit(card3_suit));
+        cards[3] = new Card(getFace(card4_face), getSuit(card4_suit));
+        cards[4] = new Card(getFace(card5_face), getSuit(card5_suit));
+    }
+
+    private Face getFace(String string){
+        if (string.equals("ac")){
+            return Face.ACE;
+        }
+        if (string.equals("c1")){
+            return Face.TEN;
+        }
+        if (string.equals("c2")){
+            return Face.DUECE;
+        }
+        if (string.equals("c3")){
+            return Face.THREE;
+        }
+        if (string.equals("c4")){
+            return Face.FOUR;
+        }
+        if (string.equals("c5")){
+            return Face.FIVE;
+        }
+        if (string.equals("c6")){
+            return Face.SIX;
+        }
+        if (string.equals("c7")){
+            return Face.SEVEN;
+        }
+        if (string.equals("c8")){
+            return Face.EIGHT;
+        }
+        if (string.equals("c9")){
+            return Face.NINE;
+        }
+        if (string.equals("ja")){
+            return Face.JACK;
+        }
+        if (string.equals("ki")){
+            return Face.KING;
+        }
+        if (string.equals("qu")){
+            return Face.QUEEN;
+        }
+        return null;
+    }
+
+    private Suit getSuit(String string){
+        if (string.equals("bs")){
+            return Suit.CLUBS;
+        }
+        if (string.equals("ds")){
+            return Suit.DIAMONDS;
+        }
+        if (string.equals("ts")){
+            return Suit.HEARTS;
+        }
+        if (string.equals("es")){
+            return Suit.SPADES;
+        }
+        return null;
     }
 }

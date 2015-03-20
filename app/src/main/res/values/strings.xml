@@ -96,6 +96,7 @@
         <item>@drawable/queen_of_hearts</item>
         <item>@drawable/queen_of_spades</item>
     </array>
+    <string name="title_activity_blank_">Blank_Activity</string>
 
 </resources>
 
