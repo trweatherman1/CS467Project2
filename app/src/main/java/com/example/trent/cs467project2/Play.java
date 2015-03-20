@@ -22,7 +22,7 @@ public class Play extends Activity implements View.OnClickListener {
     int play_counter, int_hand_counter, int_bank_counter, choice1, choice2, choice3, choice4, choice5;
     TextView hand_counter, bank_counter;
     String card1, card2, card3, card4, card5;
-    Card[] cards;
+    CardObject[] cards;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -195,23 +195,42 @@ public class Play extends Activity implements View.OnClickListener {
     private void getWinner(){
         getCardNames();
         sortByRank();
-        if(checkRoyalFlush() != null){
-            //WE GOT A WINNER
+        if(checkRoyalFlush()){
+            Toast.makeText(this, "ROYAL FLUSH", Toast.LENGTH_SHORT).show();
+        } else if(checkStraightFlush()) {
+            Toast.makeText(this, "STRAIGHT FLUSH", Toast.LENGTH_SHORT).show();
+        } else if(checkFourOfAKind()) {
+            Toast.makeText(this, "FOUR OF A KIND", Toast.LENGTH_SHORT).show();
+        } else if(checkFullHouse()) {
+            Toast.makeText(this, "FULL HOUSE", Toast.LENGTH_SHORT).show();
+        } else if(checkStraight()) {
+            Toast.makeText(this, "STRAIGHT", Toast.LENGTH_SHORT).show();
+        } else if(checkThreeOfAKind()) {
+            Toast.makeText(this, "THREE OF A KIND", Toast.LENGTH_SHORT).show();
+        } else if(checkTwoPair()) {
+            Toast.makeText(this, "TWO PAIR", Toast.LENGTH_SHORT).show();
+        } else if(checkPair()) {
+            Toast.makeText(this, "PAIR", Toast.LENGTH_SHORT).show();
         }
     }
 
     private void getCardNames(){
-        int length = card1.length();
+        int length;
         card1 = card1.substring(22);
-        card1 = card1.substring(0, length-4);
+        length = card1.length();
+        card1 = card1.substring(0, (length-4));
         card2 = card2.substring(22);
-        card2 = card2.substring(0, length-4);
+        length = card2.length();
+        card2 = card2.substring(0, (length-4));
         card3 = card3.substring(22);
-        card3 = card3.substring(0, length-4);
+        length = card3.length();
+        card3 = card3.substring(0, (length-4));
         card4 = card4.substring(22);
-        card4 = card4.substring(0, length-4);
+        length = card4.length();
+        card4 = card4.substring(0, (length-4));
         card5 = card5.substring(22);
-        card5 = card5.substring(0, length-4);
+        length = card5.length();
+        card5 = card5.substring(0, (length-4));
         String card1_face = card1.substring(0,2);
         String card2_face = card2.substring(0,2);
         String card3_face = card3.substring(0,2);
@@ -227,80 +246,100 @@ public class Play extends Activity implements View.OnClickListener {
         String card4_suit = card4.substring(length-2, length);
         length = card5.length();
         String card5_suit = card5.substring(length-2, length);
-        cards = new Card[5];
-        cards[0] = new Card(getFace(card1_face), getSuit(card1_suit));
-        cards[1] = new Card(getFace(card2_face), getSuit(card2_suit));
-        cards[2] = new Card(getFace(card3_face), getSuit(card3_suit));
-        cards[3] = new Card(getFace(card4_face), getSuit(card4_suit));
-        cards[4] = new Card(getFace(card5_face), getSuit(card5_suit));
+        cards = new CardObject[5];
+
+        cards[0] = new CardObject(getFace(card1_face), getSuit(card1_suit));
+        cards[1] = new CardObject(getFace(card2_face), getSuit(card2_suit));
+        cards[2] = new CardObject(getFace(card3_face), getSuit(card3_suit));
+        cards[3] = new CardObject(getFace(card4_face), getSuit(card4_suit));
+        cards[4] = new CardObject(getFace(card5_face), getSuit(card5_suit));
     }
 
-    private Face getFace(String string){
+    private int getFace(String string){
+        int face;
         if (string.equals("ac")){
-            return Face.ACE;
+            face = Face.ACE.getRank();
+            return face;
         }
         if (string.equals("c1")){
-            return Face.TEN;
+            face = Face.TEN.getRank();
+            return face;
         }
         if (string.equals("c2")){
-            return Face.DUECE;
+            face = Face.DUECE.getRank();
+            return face;
         }
         if (string.equals("c3")){
-            return Face.THREE;
+            face = Face.THREE.getRank();
+            return face;
         }
         if (string.equals("c4")){
-            return Face.FOUR;
+            face = Face.FOUR.getRank();
+            return face;
         }
         if (string.equals("c5")){
-            return Face.FIVE;
+            face = Face.FIVE.getRank();
+            return face;
         }
         if (string.equals("c6")){
-            return Face.SIX;
+            face = Face.SIX.getRank();
+            return face;
         }
         if (string.equals("c7")){
-            return Face.SEVEN;
+            face = Face.SEVEN.getRank();
+            return face;
         }
         if (string.equals("c8")){
-            return Face.EIGHT;
+            face = Face.EIGHT.getRank();
+            return face;
         }
         if (string.equals("c9")){
-            return Face.NINE;
+            face = Face.NINE.getRank();
+            return face;
         }
         if (string.equals("ja")){
-            return Face.JACK;
+            face = Face.JACK.getRank();
+            return face;
         }
         if (string.equals("ki")){
-            return Face.KING;
+            face = Face.KING.getRank();
+            return face;
         }
         if (string.equals("qu")){
-            return Face.QUEEN;
+            face = Face.QUEEN.getRank();
+            return face;
         }
-        return null;
+        return 0;
     }
 
-    private Suit getSuit(String string){
+    private String getSuit(String string){
+        String suit;
         if (string.equals("bs")){
-            return Suit.CLUBS;
+            suit = Suit.CLUBS.getName();
+            return suit;
         }
         if (string.equals("ds")){
-            return Suit.DIAMONDS;
+            suit = Suit.DIAMONDS.getName();
+            return suit;
         }
         if (string.equals("ts")){
-            return Suit.HEARTS;
+            suit = Suit.HEARTS.getName();
+            return suit;
         }
         if (string.equals("es")){
-            return Suit.SPADES;
+            suit = Suit.SPADES.getName();
+            return suit;
         }
         return null;
     }
 
     private void sortByRank(){
-        Card temp_card;
+        CardObject temp_card;
         boolean swapped = true;
         while(swapped) {
             swapped = false;
-            for (int counter = 0; counter < cards.length; counter++) {
-                if (cards[counter].getName().getRank() > cards[counter + 1].getName().getRank()) {
+            for (int counter = 0; counter < cards.length-1; counter++) {
+                if (cards[counter].getRank() > cards[counter + 1].getRank()) {
                     temp_card = cards[counter];
                     cards[counter] = cards[counter + 1];
                     cards[counter + 1] = temp_card;
@@ -310,49 +349,147 @@ public class Play extends Activity implements View.OnClickListener {
         }
     }
 
-    private WinHand checkRoyalFlush(){
-        Card temp_card = cards[0];
-        boolean isRoyalFlush = true;
-        for(int counter = 0; counter < cards.length && isRoyalFlush; counter++) {
-            if(!temp_card.getSuit().equals(cards[counter].getSuit())){
-                isRoyalFlush = false;
+    private boolean checkRoyalFlush(){
+        String suit = cards[0].getSuit();
+        int counter = 0;
+        boolean isTrue = true;
+        while(isTrue && counter < cards.length){
+            if(suit.equals(cards[0].getSuit())){
+                isTrue = true;
+            }
+            else {
+                isTrue = false;
             }
         }
-        if(isRoyalFlush){
-            for(int counter = 0; counter < cards.length && isRoyalFlush; counter++){
-                if (cards[counter].getName().getRank() == cards[counter + 1].getName().getRank()){
-                    isRoyalFlush = true;
+        if(isTrue){
+            counter = 0;
+            while (counter < (cards.length - 1) && isTrue){
+                if(cards[counter+1].getRank() - cards[counter].getRank() != 1)
+                    isTrue = false;
+            }
+        }
+        if(isTrue){
+            if(cards[0].getRank() != 1)
+                isTrue = false;
+            if(cards[1].getRank() != 10)
+                isTrue = false;
+            if(cards[2].getRank() != 11)
+                isTrue = false;
+            if(cards[3].getRank() != 12)
+                isTrue = false;
+            if(cards[4].getRank() != 13)
+                isTrue = false;
+        }
+        return isTrue;
+    }
+
+    private boolean checkStraightFlush(){
+        String suit = cards[0].getSuit();
+        int counter = 0;
+        boolean isTrue = true;
+        while(isTrue && counter < cards.length){
+            if(suit.equals(cards[0].getSuit())){
+                isTrue = true;
+            }
+            else {
+                isTrue = false;
+            }
+        }
+        if(isTrue){
+            counter = 0;
+            while (counter < (cards.length - 1) && isTrue){
+                if(cards[counter+1].getRank() - cards[counter].getRank() != 1)
+                    isTrue = false;
+            }
+        }
+        return isTrue;
+    }
+
+    private boolean checkFourOfAKind(){
+        boolean isTrue = true;
+        int num_match = 0;
+        for(int counter = 0; counter < cards.length-1; counter++){
+            if(cards[counter].getRank() == cards[counter+1].getRank())
+                num_match++;
+        }
+        if(num_match != 4)
+            isTrue = false;
+        return isTrue;
+    }
+    private boolean checkFullHouse(){
+        if(cards[0].getRank() == cards[1].getRank()){
+            if(cards[2].getRank() == cards[3].getRank()){
+                if(cards[3].getRank() == cards[4].getRank()){
+                    return true;
                 }
-                else{
-                    isRoyalFlush = false;
+            }
+            if(cards[1].getRank() == cards[2].getRank()){
+                if(cards[3].getRank() == cards[4].getRank()){
+                    return true;
                 }
             }
         }
-        if(isRoyalFlush)
-            return WinHand.RFLUSH;
-        else
-            return null;
+        return false;
+    }
+    private boolean checkStraight(){
+        int num_match = 0;
+        for(int counter = 0; counter < cards.length; counter++){
+            if(cards[0].getSuit().equals(cards[counter].getSuit()))
+                num_match++;
+        }
+        if(num_match == 5)
+            return true;
+        return false;
+    }
+    private boolean checkThreeOfAKind(){
+        int num_match = 0;
+        for(int counter = 0; counter < cards.length; counter++){
+            if(cards[0].getRank() == cards[counter].getRank()){
+                num_match++;
+            }
+        }
+        if(num_match == 3){
+            return true;
+        }
+        else{
+            for (int counter = 0; counter < cards.length; counter++){
+                if(cards[1].getRank() == cards[counter].getRank()){
+                    num_match++;
+                }
+            }
+            if(num_match == 3){
+                return true;
+            }
+            else {
+                for (int counter = 0; counter < cards.length; counter++){
+                    if(cards[2].getRank() == cards[counter].getRank()){
+                        num_match++;
+                    }
+                }
+                if(num_match == 3){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    private boolean checkTwoPair(){
+        boolean match_1, match_2, match_3;
+        match_1 = cards[0].getRank() == cards[1].getRank() &&
+                cards[2].getRank() == cards[3].getRank() ;
+        match_2 = cards[0].getRank() == cards[1].getRank() &&
+                cards[3].getRank() == cards[4].getRank() ;
+        match_3 = cards[1].getRank() ==cards[2].getRank() &&
+                cards[3].getRank() ==cards[4].getRank() ;
+        return( match_1 || match_2 || match_3 );
+    }
+    private boolean checkPair(){
+        boolean match_1, match_2, match_3, match_4;
+        match_1 = cards[0].getRank() == cards[1].getRank();
+        match_2 = cards[1].getRank() == cards[2].getRank();
+        match_3 = cards[2].getRank() == cards[3].getRank();
+        match_4 = cards[3].getRank() == cards[4].getRank();
+        return( match_1 || match_2 || match_3 || match_4 );
     }
 
-    private WinHand checkStraightFlush(){
-
-    }
-    private WinHand checkFourOfAKind(){
-
-    }
-    private WinHand checkFullHouse(){
-
-    }
-    private WinHand checkStraightFlush(){
-
-    }
-    private WinHand checkThreeOfAKind(){
-
-    }
-    private WinHand checkTwoPair(){
-
-    }
-    private WinHand checkPair(){
-
-    }
 }
