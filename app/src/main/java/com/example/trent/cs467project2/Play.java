@@ -194,6 +194,10 @@ public class Play extends Activity implements View.OnClickListener {
 
     private void getWinner(){
         getCardNames();
+        sortByRank();
+        if(checkRoyalFlush() != null){
+            //WE GOT A WINNER
+        }
     }
 
     private void getCardNames(){
@@ -288,5 +292,67 @@ public class Play extends Activity implements View.OnClickListener {
             return Suit.SPADES;
         }
         return null;
+    }
+
+    private void sortByRank(){
+        Card temp_card;
+        boolean swapped = true;
+        while(swapped) {
+            swapped = false;
+            for (int counter = 0; counter < cards.length; counter++) {
+                if (cards[counter].getName().getRank() > cards[counter + 1].getName().getRank()) {
+                    temp_card = cards[counter];
+                    cards[counter] = cards[counter + 1];
+                    cards[counter + 1] = temp_card;
+                    swapped = true;
+                }
+            }
+        }
+    }
+
+    private WinHand checkRoyalFlush(){
+        Card temp_card = cards[0];
+        boolean isRoyalFlush = true;
+        for(int counter = 0; counter < cards.length && isRoyalFlush; counter++) {
+            if(!temp_card.getSuit().equals(cards[counter].getSuit())){
+                isRoyalFlush = false;
+            }
+        }
+        if(isRoyalFlush){
+            for(int counter = 0; counter < cards.length && isRoyalFlush; counter++){
+                if (cards[counter].getName().getRank() == cards[counter + 1].getName().getRank()){
+                    isRoyalFlush = true;
+                }
+                else{
+                    isRoyalFlush = false;
+                }
+            }
+        }
+        if(isRoyalFlush)
+            return WinHand.RFLUSH;
+        else
+            return null;
+    }
+
+    private WinHand checkStraightFlush(){
+
+    }
+    private WinHand checkFourOfAKind(){
+
+    }
+    private WinHand checkFullHouse(){
+
+    }
+    private WinHand checkStraightFlush(){
+
+    }
+    private WinHand checkThreeOfAKind(){
+
+    }
+    private WinHand checkTwoPair(){
+
+    }
+    private WinHand checkPair(){
+
     }
 }
