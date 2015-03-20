@@ -65,7 +65,7 @@
             android:textColor="@color/catamount_gold"
             android:layout_below="@+id/view_hands_counter"
             android:layout_centerHorizontal="true"
-            android:text="PLAYER&apos;s Hand:" />
+            android:text="@string/player_name" />
     </RelativeLayout>
 
     <LinearLayout
@@ -130,7 +130,9 @@
             android:layout_marginEnd="43dp"
             android:layout_alignParentBottom="true"
             android:layout_toLeftOf="@+id/deal_button"
-            android:layout_toStartOf="@+id/deal_button" />
+            android:layout_toStartOf="@+id/deal_button"
+            android:textColor="@color/catamount_gold"
+            android:background="@color/catamount_purple" />
 
         <Button
             android:layout_width="wrap_content"
@@ -138,7 +140,9 @@
             android:text="@string/deal"
             android:id="@+id/deal_button"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:background="@color/catamount_purple"
+            android:textColor="@color/catamount_gold" />
 
         <Button
             android:layout_width="wrap_content"
@@ -149,7 +153,9 @@
             android:layout_marginStart="51dp"
             android:layout_alignParentBottom="true"
             android:layout_toRightOf="@+id/deal_button"
-            android:layout_toEndOf="@+id/deal_button" />
+            android:layout_toEndOf="@+id/deal_button"
+            android:textColor="@color/catamount_gold"
+            android:background="@color/catamount_purple" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -161,7 +167,9 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp" />
+            android:layout_marginRight="30dp"
+            android:background="@color/catamount_purple"
+            android:textColor="@color/catamount_gold" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -173,7 +181,9 @@
             android:layout_alignRight="@+id/menu_button"
             android:layout_alignEnd="@+id/menu_button"
             android:layout_marginLeft="50dp"
-            android:layout_marginRight="5dp" />
+            android:layout_marginRight="5dp"
+            android:textColor="@color/catamount_gold"
+            android:background="@color/catamount_purple" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -182,7 +192,9 @@
             android:text="@string/Throw"
             android:id="@+id/hold_button3"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:background="@color/catamount_purple"
+            android:textColor="@color/catamount_gold" />
 
 
         <Button
@@ -194,7 +206,9 @@
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/deal_button"
             android:layout_toEndOf="@+id/deal_button"
-            android:layout_marginLeft="40dp" />
+            android:layout_marginLeft="40dp"
+            android:textColor="@color/catamount_gold"
+            android:background="@color/catamount_purple" />
 
 
         <Button
@@ -206,7 +220,9 @@
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/win_button"
             android:layout_toEndOf="@+id/win_button"
-            android:layout_marginLeft="25dp" />
+            android:layout_marginLeft="25dp"
+            android:background="@color/catamount_purple"
+            android:textColor="@color/catamount_gold" />
 
     </RelativeLayout>
 

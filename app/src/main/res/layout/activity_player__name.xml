@@ -26,7 +26,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="52dp"
-        android:textColor="@android:color/black" />
+        android:textColor="@color/catamount_gold"
+        android:background="@color/catamount_purple" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -37,6 +38,6 @@
         android:id="@+id/editText"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:textColor="@android:color/white" />
+        android:textColor="@color/catamount_gold" />
 
 </RelativeLayout>

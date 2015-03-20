@@ -42,6 +42,13 @@ public class Player_Name extends Activity implements View.OnClickListener {
         }
     }
 
+    /*
+    public void load(){
+        SharedPreferences settings = getSharedPreferences(AppHand.PREFS,Context.MODE_PRIVATE);
+        String name = settings.getString(AppHand.NAME, "No Name");
+        editText1.setText(name);
+    }
+    */
 
     public void submit() {
         SharedPreferences settings = getSharedPreferences(AppHand.PREFS,Context.MODE_PRIVATE);
@@ -74,6 +81,7 @@ public class Player_Name extends Activity implements View.OnClickListener {
 
         if( v == submit){
             submit();
+            //load();
             Intent intent = new Intent(this, MainMenu.class);
             this.startActivity(intent);
             finish();

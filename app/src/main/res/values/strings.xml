@@ -42,6 +42,7 @@
     <string name="hold">HOLD</string>
     <string name="Throw">THROW</string>
     <string name="title_activity_win_list">WinList</string>
+    <string name="player_name">Player Hand</string>
 
     <array name="random_card">
         <item>@drawable/ace_of_clubs</item>

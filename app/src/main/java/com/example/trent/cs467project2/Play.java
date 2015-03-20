@@ -2,8 +2,10 @@ package com.example.trent.cs467project2;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -22,7 +24,7 @@ public class Play extends Activity implements View.OnClickListener {
     Boolean hold1, hold2, hold3, hold4, hold5;
     Button hold_button1, hold_button2, hold_button3, hold_button4, hold_button5;
     int play_counter, int_hand_counter, int_bank_counter, choice1, choice2, choice3, choice4, choice5;
-    TextView hand_counter, bank_counter;
+    TextView hand_counter, bank_counter, player_name;
     String card1, card2, card3, card4, card5;
     CardObject[] cards;
     int total_bank, current_bank;
@@ -78,11 +80,20 @@ public class Play extends Activity implements View.OnClickListener {
 
         hand_counter = (TextView)this.findViewById(R.id.view_hands_counter);
         bank_counter = (TextView)this.findViewById(R.id.bank_counter);
+        player_name = (TextView)this.findViewById(R.id.player_name);
 
         hand_counter.setText(int_hand_counter + "");
         bank_counter.setText(int_bank_counter + "");
+        player_name.setText("");
 
         total_bank = 0;
+        load();
+    }
+
+    public void load(){
+        SharedPreferences settings = getSharedPreferences(AppHand.PREFS, Context.MODE_PRIVATE);
+        String name = settings.getString(AppHand.NAME, "No Name");
+        player_name.setText(name);
     }
 
     @Override
