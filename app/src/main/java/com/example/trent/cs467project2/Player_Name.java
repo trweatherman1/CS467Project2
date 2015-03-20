@@ -27,7 +27,7 @@ public class Player_Name extends Activity implements View.OnClickListener {
 
         editText1 = (EditText) findViewById(R.id.editText);
 
-        submit.findViewById(R.id.button4);
+        submit = (Button) this.findViewById(R.id.button4);
         submit.setOnClickListener(this);
         restore(savedInstanceState);
     }
