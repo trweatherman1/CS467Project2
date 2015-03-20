@@ -349,98 +349,141 @@ public class Play extends Activity implements View.OnClickListener {
         }
     }
 
+
+
     private boolean checkRoyalFlush(){
         String suit = cards[0].getSuit();
         int counter = 0;
         boolean isTrue = true;
         while(isTrue && counter < cards.length){
-            if(suit.equals(cards[0].getSuit())){
+            if(suit.equals(cards[counter].getSuit())){
                 isTrue = true;
             }
             else {
                 isTrue = false;
             }
-        }
-        if(isTrue){
-            counter = 0;
-            while (counter < (cards.length - 1) && isTrue){
-                if(cards[counter+1].getRank() - cards[counter].getRank() != 1)
-                    isTrue = false;
-            }
+            counter++;
         }
         if(isTrue){
             if(cards[0].getRank() != 1)
-                isTrue = false;
+                return false;
             if(cards[1].getRank() != 10)
-                isTrue = false;
+                return false;
             if(cards[2].getRank() != 11)
-                isTrue = false;
+                return false;
             if(cards[3].getRank() != 12)
-                isTrue = false;
+                return false;
             if(cards[4].getRank() != 13)
-                isTrue = false;
+                return false;
         }
         return isTrue;
     }
 
     private boolean checkStraightFlush(){
-        String suit = cards[0].getSuit();
+        int i, testRank;
+        boolean checkSuit = true;
         int counter = 0;
-        boolean isTrue = true;
-        while(isTrue && counter < cards.length){
-            if(suit.equals(cards[0].getSuit())){
-                isTrue = true;
+        String suit = cards[0].getSuit();
+
+        while(checkSuit && counter < cards.length){
+            if(suit.equals(cards[counter].getSuit())){
+                checkSuit = true;
             }
             else {
-                isTrue = false;
+                checkSuit = false;
             }
+            counter++;
         }
-        if(isTrue){
-            counter = 0;
-            while (counter < (cards.length - 1) && isTrue){
-                if(cards[counter+1].getRank() - cards[counter].getRank() != 1)
-                    isTrue = false;
+        if ( cards[0].getRank() == 1 )
+        {
+            boolean a = cards[1].getRank() == 2 && cards[2].getRank() == 3 &&
+                    cards[3].getRank() == 4 && cards[4].getRank() == 5 ;
+            boolean b = cards[1].getRank() == 10 && cards[2].getRank() == 11 &&
+                    cards[3].getRank() == 12 && cards[4].getRank() == 13 ;
+
+            return ( a || b );
+        }
+        else
+        {
+
+            testRank = cards[0].getRank() + 1;
+
+            for ( i = 1; i < 5; i++ )
+            {
+                if (cards[i].getRank() != testRank)
+                    return false;
+
+                testRank++;
             }
+
+            return true;
         }
-        return isTrue;
     }
 
     private boolean checkFourOfAKind(){
-        boolean isTrue = true;
-        int num_match = 0;
-        for(int counter = 0; counter < cards.length-1; counter++){
-            if(cards[counter].getRank() == cards[counter+1].getRank())
-                num_match++;
-        }
-        if(num_match != 4)
-            isTrue = false;
-        return isTrue;
+
+        boolean match_1, match_2;
+
+        match_1 = cards[0].getRank() == cards[1].getRank() &&
+                cards[1].getRank() == cards[2].getRank() &&
+                cards[2].getRank() == cards[3].getRank();
+
+        match_2 = cards[1].getRank() == cards[2].getRank() &&
+                cards[2].getRank() == cards[3].getRank() &&
+                cards[3].getRank() == cards[4].getRank() ;
+
+        return ( match_1 || match_2 );
     }
+
     private boolean checkFullHouse(){
-        if(cards[0].getRank() == cards[1].getRank()){
-            if(cards[2].getRank() == cards[3].getRank()){
-                if(cards[3].getRank() == cards[4].getRank()){
-                    return true;
-                }
-            }
-            if(cards[1].getRank() == cards[2].getRank()){
-                if(cards[3].getRank() == cards[4].getRank()){
-                    return true;
-                }
-            }
-        }
-        return false;
+        boolean match_1, match_2;
+
+      /* ------------------------------------------------------
+         Check for: x x x y y
+	 ------------------------------------------------------- */
+        match_1 = cards[0].getRank() == cards[1].getRank() &&
+                cards[1].getRank() == cards[2].getRank() &&
+                cards[3].getRank() == cards[4].getRank();
+
+      /* ------------------------------------------------------
+         Check for: x x y y y
+	 ------------------------------------------------------- */
+        match_2 = cards[0].getRank() == cards[1].getRank() &&
+                cards[2].getRank() == cards[3].getRank() &&
+                cards[3].getRank() == cards[4].getRank();
+
+        return( match_1 || match_2 );
     }
+
     private boolean checkStraight(){
-        int num_match = 0;
-        for(int counter = 0; counter < cards.length; counter++){
-            if(cards[0].getSuit().equals(cards[counter].getSuit()))
-                num_match++;
+        int i, testRank;
+        if ( cards[0].getRank() == 1 )
+        {
+            boolean a = cards[1].getRank() == 2 && cards[2].getRank() == 3 &&
+                    cards[3].getRank() == 4 && cards[4].getRank() == 5 ;
+            boolean b = cards[1].getRank() == 10 && cards[2].getRank() == 11 &&
+                    cards[3].getRank() == 12 && cards[4].getRank() == 13 ;
+
+            return ( a || b );
         }
-        if(num_match == 5)
+        else
+        {
+
+            testRank = cards[0].getRank() + 1;
+
+            for ( i = 1; i < 5; i++ )
+            {
+                if (cards[i].getRank() != testRank)
+                    return false;
+
+                testRank++;
+            }
+
             return true;
-        return false;
+        }
     }
+//TODO Fix below
+
     private boolean checkThreeOfAKind(){
         int num_match = 0;
         for(int counter = 0; counter < cards.length; counter++){
