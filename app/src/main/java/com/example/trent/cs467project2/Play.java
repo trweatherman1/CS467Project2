@@ -23,6 +23,7 @@ public class Play extends Activity implements View.OnClickListener {
     TextView hand_counter, bank_counter;
     String card1, card2, card3, card4, card5;
     CardObject[] cards;
+    int total_bank, current_bank;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +79,8 @@ public class Play extends Activity implements View.OnClickListener {
 
         hand_counter.setText(int_hand_counter + "");
         bank_counter.setText(int_bank_counter + "");
+
+        total_bank = 0;
     }
 
     @Override
@@ -92,6 +95,12 @@ public class Play extends Activity implements View.OnClickListener {
                         "Please press deal first", Toast.LENGTH_LONG).show();
             } else {
                 hold1 = !hold1;
+                if(hold1){
+                    hold_button1.setText(R.string.Throw);
+                }
+                else{
+                    hold_button1.setText(R.string.hold);
+                }
             }
         }
 
@@ -101,6 +110,12 @@ public class Play extends Activity implements View.OnClickListener {
                         "Please press deal first", Toast.LENGTH_LONG).show();
             } else {
                 hold2 = !hold2;
+                if(hold2){
+                    hold_button2.setText(R.string.Throw);
+                }
+                else{
+                    hold_button2.setText(R.string.hold);
+                }
             }
         }
         if (v == hold_button3) {
@@ -109,6 +124,12 @@ public class Play extends Activity implements View.OnClickListener {
                         "Please press deal first", Toast.LENGTH_LONG).show();
             } else {
                 hold3 = !hold3;
+                if(hold3){
+                    hold_button3.setText(R.string.Throw);
+                }
+                else{
+                    hold_button3.setText(R.string.hold);
+                }
             }
         }
         if (v == hold_button4) {
@@ -117,6 +138,12 @@ public class Play extends Activity implements View.OnClickListener {
                         "Please press deal first", Toast.LENGTH_LONG).show();
             } else {
                 hold4 = !hold4;
+                if(hold4){
+                    hold_button4.setText(R.string.Throw);
+                }
+                else{
+                    hold_button4.setText(R.string.hold);
+                }
             }
         }
         if (v == hold_button5) {
@@ -125,6 +152,12 @@ public class Play extends Activity implements View.OnClickListener {
                         "Please press deal first", Toast.LENGTH_LONG).show();
             } else {
                 hold5 = !hold5;
+                if(hold5){
+                    hold_button5.setText(R.string.Throw);
+                }
+                else{
+                    hold_button5.setText(R.string.hold);
+                }
             }
         }
 
@@ -158,27 +191,50 @@ public class Play extends Activity implements View.OnClickListener {
         }
         if (!hold2) {
             choice2 = (int) (Math.random() * images.length());
+            while(choice2 == choice1){
+                choice2 = (int) (Math.random() * images.length());
+            }
             image2.setImageResource(images.getResourceId(choice2, R.drawable.ace_of_clubs));
             card2 = images.getString(choice2);
         }
         if (!hold3) {
             choice3 = (int) (Math.random() * images.length());
+            while(choice3 == choice1 || choice3 == choice2){
+                choice3 = (int) (Math.random() * images.length());
+            }
             image3.setImageResource(images.getResourceId(choice3, R.drawable.ace_of_clubs));
             card3 = images.getString(choice3);
         }
         if (!hold4) {
             choice4 = (int) (Math.random() * images.length());
+            while(choice4 == choice1 || choice4 == choice2 || choice4 == choice3){
+                choice4 = (int) (Math.random() * images.length());
+            }
             image4.setImageResource(images.getResourceId(choice4, R.drawable.ace_of_clubs));
             card4 = images.getString(choice4);
         }
         if (!hold5) {
             choice5 = (int) (Math.random() * images.length());
+            while(choice5 == choice1 || choice5 == choice2 || choice5 == choice3 ||
+                    choice5 == choice4){
+                choice5 = (int) (Math.random() * images.length());
+            }
             image5.setImageResource(images.getResourceId(choice5, R.drawable.ace_of_clubs));
             card5 = images.getString(choice5);
         }
         images.recycle();
         play_counter++;
         hand_counter.setText(int_hand_counter + "");
+        hold1 = false;
+        hold2 = false;
+        hold3 = false;
+        hold4 = false;
+        hold5 = false;
+        hold_button1.setText(R.string.hold);
+        hold_button2.setText(R.string.hold);
+        hold_button3.setText(R.string.hold);
+        hold_button4.setText(R.string.hold);
+        hold_button5.setText(R.string.hold);
 
         if (play_counter == 2) {
             //Toast.makeText(getApplicationContext(), "Good Game!", Toast.LENGTH_LONG).show();
@@ -197,21 +253,38 @@ public class Play extends Activity implements View.OnClickListener {
         sortByRank();
         if(checkRoyalFlush()){
             Toast.makeText(this, "ROYAL FLUSH", Toast.LENGTH_SHORT).show();
+            current_bank = 1000;
         } else if(checkStraightFlush()) {
             Toast.makeText(this, "STRAIGHT FLUSH", Toast.LENGTH_SHORT).show();
+            current_bank = 250;
         } else if(checkFourOfAKind()) {
             Toast.makeText(this, "FOUR OF A KIND", Toast.LENGTH_SHORT).show();
+            current_bank = 100;
         } else if(checkFullHouse()) {
             Toast.makeText(this, "FULL HOUSE", Toast.LENGTH_SHORT).show();
+            current_bank = 50;
+        } else if(checkFlush()) {
+            Toast.makeText(this, "FLUSH", Toast.LENGTH_SHORT).show();
+            current_bank = 30;
         } else if(checkStraight()) {
             Toast.makeText(this, "STRAIGHT", Toast.LENGTH_SHORT).show();
+            current_bank = 25;
         } else if(checkThreeOfAKind()) {
             Toast.makeText(this, "THREE OF A KIND", Toast.LENGTH_SHORT).show();
+            current_bank = 20;
         } else if(checkTwoPair()) {
             Toast.makeText(this, "TWO PAIR", Toast.LENGTH_SHORT).show();
+            current_bank = 10;
         } else if(checkPair()) {
             Toast.makeText(this, "PAIR", Toast.LENGTH_SHORT).show();
+            current_bank = 5;
+        } else{
+            Toast.makeText(this, "SORRY, TRY AGAIN", Toast.LENGTH_SHORT).show();
+            current_bank = 0;
         }
+
+        total_bank += current_bank;
+        bank_counter.setText(total_bank + "");
     }
 
     private void getCardNames(){
@@ -482,39 +555,43 @@ public class Play extends Activity implements View.OnClickListener {
             return true;
         }
     }
-//TODO Fix below
 
-    private boolean checkThreeOfAKind(){
-        int num_match = 0;
-        for(int counter = 0; counter < cards.length; counter++){
-            if(cards[0].getRank() == cards[counter].getRank()){
-                num_match++;
-            }
-        }
-        if(num_match == 3){
-            return true;
-        }
-        else{
-            for (int counter = 0; counter < cards.length; counter++){
-                if(cards[1].getRank() == cards[counter].getRank()){
-                    num_match++;
-                }
-            }
-            if(num_match == 3){
-                return true;
+    private boolean checkFlush(){
+        boolean checkSuit = true;
+        int counter = 0;
+        String suit = cards[0].getSuit();
+
+        while(checkSuit && counter < cards.length){
+            if(suit.equals(cards[counter].getSuit())){
+                checkSuit = true;
             }
             else {
-                for (int counter = 0; counter < cards.length; counter++){
-                    if(cards[2].getRank() == cards[counter].getRank()){
-                        num_match++;
-                    }
-                }
-                if(num_match == 3){
-                    return true;
-                }
+                checkSuit = false;
             }
+            counter++;
         }
-        return false;
+        return checkSuit;
+    }
+
+    private boolean checkThreeOfAKind(){
+        boolean match_1, match_2, match_3;
+        match_1 = cards[0].getRank() == cards[1].getRank()  &&
+                cards[1].getRank()  == cards[2].getRank()  &&
+                cards[3].getRank()  != cards[0].getRank() &&
+                cards[4].getRank() != cards[0].getRank() &&
+                cards[3].getRank() != cards[4].getRank() ;
+        match_2 = cards[1].getRank() == cards[2].getRank() &&
+                cards[2].getRank() == cards[3].getRank() &&
+                cards[0].getRank() != cards[1].getRank() &&
+                cards[4].getRank() != cards[1].getRank() &&
+                cards[0].getRank() != cards[4].getRank() ;
+        match_3 = cards[2].getRank() == cards[3].getRank() &&
+                cards[3].getRank() == cards[4].getRank() &&
+                cards[0].getRank() != cards[2].getRank() &&
+                cards[1].getRank() != cards[2].getRank() &&
+                cards[0].getRank() != cards[1].getRank() ;
+
+        return( match_1 || match_2 || match_3 );
     }
     private boolean checkTwoPair(){
         boolean match_1, match_2, match_3;
