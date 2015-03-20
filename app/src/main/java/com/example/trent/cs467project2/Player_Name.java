@@ -50,7 +50,7 @@ public class Player_Name extends Activity implements View.OnClickListener {
         String name = editText1.getText().toString();
         editor.putString(AppHand.NAME, name);
         editor.commit();
-        Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Saved Player Name", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -76,6 +76,7 @@ public class Player_Name extends Activity implements View.OnClickListener {
             submit();
             Intent intent = new Intent(this, MainMenu.class);
             this.startActivity(intent);
+            finish();
 
         }
     }
