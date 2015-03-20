@@ -95,12 +95,6 @@ public class Play extends Activity implements View.OnClickListener {
                         "Please press deal first", Toast.LENGTH_LONG).show();
             } else {
                 hold1 = !hold1;
-                if(hold1){
-                    hold_button1.setText(R.string.Throw);
-                }
-                else{
-                    hold_button1.setText(R.string.hold);
-                }
             }
         }
 
@@ -110,12 +104,7 @@ public class Play extends Activity implements View.OnClickListener {
                         "Please press deal first", Toast.LENGTH_LONG).show();
             } else {
                 hold2 = !hold2;
-                if(hold2){
-                    hold_button2.setText(R.string.Throw);
-                }
-                else{
-                    hold_button2.setText(R.string.hold);
-                }
+
             }
         }
         if (v == hold_button3) {
@@ -124,12 +113,6 @@ public class Play extends Activity implements View.OnClickListener {
                         "Please press deal first", Toast.LENGTH_LONG).show();
             } else {
                 hold3 = !hold3;
-                if(hold3){
-                    hold_button3.setText(R.string.Throw);
-                }
-                else{
-                    hold_button3.setText(R.string.hold);
-                }
             }
         }
         if (v == hold_button4) {
@@ -138,12 +121,6 @@ public class Play extends Activity implements View.OnClickListener {
                         "Please press deal first", Toast.LENGTH_LONG).show();
             } else {
                 hold4 = !hold4;
-                if(hold4){
-                    hold_button4.setText(R.string.Throw);
-                }
-                else{
-                    hold_button4.setText(R.string.hold);
-                }
             }
         }
         if (v == hold_button5) {
@@ -152,12 +129,6 @@ public class Play extends Activity implements View.OnClickListener {
                         "Please press deal first", Toast.LENGTH_LONG).show();
             } else {
                 hold5 = !hold5;
-                if(hold5){
-                    hold_button5.setText(R.string.Throw);
-                }
-                else{
-                    hold_button5.setText(R.string.hold);
-                }
             }
         }
 
@@ -230,11 +201,6 @@ public class Play extends Activity implements View.OnClickListener {
         hold3 = false;
         hold4 = false;
         hold5 = false;
-        hold_button1.setText(R.string.hold);
-        hold_button2.setText(R.string.hold);
-        hold_button3.setText(R.string.hold);
-        hold_button4.setText(R.string.hold);
-        hold_button5.setText(R.string.hold);
 
         if (play_counter == 2) {
             //Toast.makeText(getApplicationContext(), "Good Game!", Toast.LENGTH_LONG).show();
