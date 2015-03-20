@@ -9,5 +9,6 @@ public class AppHand {
             STRAIGHTHAND = "Straight - $25", THREEOFAKIND = "Three of a Kind - $20",
             TWOPAIR = "2 Pair - $10", PAIR = "Pair - $5";
 
+    public static final String PREFS = "prefs";
     public static final String NAME = "name";
 }
