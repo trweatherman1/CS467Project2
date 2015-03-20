@@ -38,16 +38,16 @@ public class MainMenu extends Activity implements View.OnClickListener {
 
         if(v == button1){
             this.startActivity(option1);
+
         }
         else if(v == button2)
         {
             this.startActivity(option2);
+
         }
         else if(v == button3){
             this.startActivity(option3);
         }
-
-
 
     }
 }
