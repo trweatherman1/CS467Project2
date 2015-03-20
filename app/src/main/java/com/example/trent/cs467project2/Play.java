@@ -1,6 +1,8 @@
 package com.example.trent.cs467project2;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
@@ -95,6 +97,11 @@ public class Play extends Activity implements View.OnClickListener {
                         "Please press deal first", Toast.LENGTH_LONG).show();
             } else {
                 hold1 = !hold1;
+                if(hold1){
+                    hold_button1.setText(R.string.hold);
+                } else {
+                    hold_button1.setText(R.string.Throw);
+                }
             }
         }
 
@@ -104,7 +111,11 @@ public class Play extends Activity implements View.OnClickListener {
                         "Please press deal first", Toast.LENGTH_LONG).show();
             } else {
                 hold2 = !hold2;
-
+                if(hold2){
+                    hold_button2.setText(R.string.hold);
+                } else {
+                    hold_button2.setText(R.string.Throw);
+                }
             }
         }
         if (v == hold_button3) {
@@ -113,6 +124,11 @@ public class Play extends Activity implements View.OnClickListener {
                         "Please press deal first", Toast.LENGTH_LONG).show();
             } else {
                 hold3 = !hold3;
+                if(hold3){
+                    hold_button3.setText(R.string.hold);
+                } else {
+                    hold_button3.setText(R.string.Throw);
+                }
             }
         }
         if (v == hold_button4) {
@@ -121,6 +137,11 @@ public class Play extends Activity implements View.OnClickListener {
                         "Please press deal first", Toast.LENGTH_LONG).show();
             } else {
                 hold4 = !hold4;
+                if(hold4){
+                    hold_button4.setText(R.string.hold);
+                } else {
+                    hold_button4.setText(R.string.Throw);
+                }
             }
         }
         if (v == hold_button5) {
@@ -129,6 +150,11 @@ public class Play extends Activity implements View.OnClickListener {
                         "Please press deal first", Toast.LENGTH_LONG).show();
             } else {
                 hold5 = !hold5;
+                if(hold5){
+                    hold_button5.setText(R.string.hold);
+                } else {
+                    hold_button5.setText(R.string.Throw);
+                }
             }
         }
 
@@ -202,14 +228,16 @@ public class Play extends Activity implements View.OnClickListener {
         hold4 = false;
         hold5 = false;
 
+        hold_button1.setText(R.string.Throw);
+        hold_button2.setText(R.string.Throw);
+        hold_button3.setText(R.string.Throw);
+        hold_button4.setText(R.string.Throw);
+        hold_button5.setText(R.string.Throw);
+
+
         if (play_counter == 2) {
             //Toast.makeText(getApplicationContext(), "Good Game!", Toast.LENGTH_LONG).show();
             play_counter = 0;
-            hold1 = false;
-            hold2 = false;
-            hold3 = false;
-            hold4 = false;
-            hold5 = false;
             getWinner();
         }
     }
@@ -218,35 +246,35 @@ public class Play extends Activity implements View.OnClickListener {
         getCardNames();
         sortByRank();
         if(checkRoyalFlush()){
-            Toast.makeText(this, "ROYAL FLUSH", Toast.LENGTH_SHORT).show();
             current_bank = 1000;
+            displayDialog("You won $1000 with a Royal Flush!");
         } else if(checkStraightFlush()) {
-            Toast.makeText(this, "STRAIGHT FLUSH", Toast.LENGTH_SHORT).show();
             current_bank = 250;
+            displayDialog("You won $250 with a Straight Flush!");
         } else if(checkFourOfAKind()) {
-            Toast.makeText(this, "FOUR OF A KIND", Toast.LENGTH_SHORT).show();
             current_bank = 100;
+            displayDialog("You won $100 with 4 of a Kind!");
         } else if(checkFullHouse()) {
-            Toast.makeText(this, "FULL HOUSE", Toast.LENGTH_SHORT).show();
             current_bank = 50;
+            displayDialog("You won $50 with a Full House!");
         } else if(checkFlush()) {
-            Toast.makeText(this, "FLUSH", Toast.LENGTH_SHORT).show();
             current_bank = 30;
+            displayDialog("You won $30 with a Flush!");
         } else if(checkStraight()) {
-            Toast.makeText(this, "STRAIGHT", Toast.LENGTH_SHORT).show();
             current_bank = 25;
+            displayDialog("You won $25 with a Straight!");
         } else if(checkThreeOfAKind()) {
-            Toast.makeText(this, "THREE OF A KIND", Toast.LENGTH_SHORT).show();
             current_bank = 20;
+            displayDialog("You won $20 with 3 of a Kind!");
         } else if(checkTwoPair()) {
-            Toast.makeText(this, "TWO PAIR", Toast.LENGTH_SHORT).show();
             current_bank = 10;
+            displayDialog("You won $10 with Two Pair!");
         } else if(checkPair()) {
-            Toast.makeText(this, "PAIR", Toast.LENGTH_SHORT).show();
             current_bank = 5;
-        } else{
-            Toast.makeText(this, "SORRY, TRY AGAIN", Toast.LENGTH_SHORT).show();
+            displayDialog("You won $5 with a Pair!");
+        } else {
             current_bank = 0;
+            displayDialog("Sorry, you lost!");
         }
 
         total_bank += current_bank;
@@ -576,6 +604,30 @@ public class Play extends Activity implements View.OnClickListener {
         match_3 = cards[2].getRank() == cards[3].getRank();
         match_4 = cards[3].getRank() == cards[4].getRank();
         return( match_1 || match_2 || match_3 || match_4 );
+    }
+    private void displayDialog(String string){
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+        builder1.setMessage(string + " Play again?");
+        builder1.setCancelable(true);
+        builder1.setPositiveButton("Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        image1.setImageResource(R.drawable.back);
+                        image2.setImageResource(R.drawable.back);
+                        image3.setImageResource(R.drawable.back);
+                        image4.setImageResource(R.drawable.back);
+                        image5.setImageResource(R.drawable.back);
+                    }
+                });
+        builder1.setNegativeButton("No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                       finish();
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
     }
 
 }
