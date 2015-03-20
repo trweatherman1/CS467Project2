@@ -1,14 +1,23 @@
 package com.example.trent.cs467project2;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 
-public class Player_Name extends Activity {
+public class Player_Name extends Activity implements View.OnClickListener{//implements View.OnClickListener {
+    Button submit;
+    EditText editText1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,7 +25,93 @@ public class Player_Name extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_player__name);
 
-        //button4.findViewById(R.id.button4);
-        //button4.setOnClickListener(this);
+        editText1 = (EditText) findViewById(R.id.editText);
+        //editText1.setOnClickListener(this);
+        submit.findViewById(R.id.button4);
+        submit.setOnClickListener(this);
+        restore(savedInstanceState);
     }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState){
+        if(savedInstanceState != null){
+            super.onRestoreInstanceState(savedInstanceState);
+            String name = editText1.getText().toString();
+            savedInstanceState.putString(AppHand.NAME, name);
+        }
+
+    }
+
+    public void restore(Bundle savedInstanceState){
+        if(savedInstanceState != null){
+            String name = savedInstanceState.getString(AppHand.NAME, "No Name");
+            editText1.setText(name);
+        }
+    }
+
+    public void submit(){
+        SharedPreferences settings = getSharedPreferences(AppHand.NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+
+        String name = editText1.getText().toString();
+        editor.putString(AppHand.NAME, name);
+
+        editor.commit();
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v == submit){
+            submit();
+        }
+    }
+
+    /*
+    private void restore(Bundle savedInstanceState) {
+        if (savedInstanceState != null) {
+            String name = savedInstanceState.getString(AppHand.NAME, "No Name");
+            editText1.setText(name);
+
+
+        }
+    }
+
+
+    public void submit() {
+        SharedPreferences settings = getSharedPreferences(AppHand.NAME,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+
+        String name = editText1.getText().toString();
+        editor.putString(AppHand.NAME, name);
+        editor.commit();
+        Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+
+        if (savedInstanceState != null) {
+            // Always call the superclass so it can restore the view hierarchy
+            super.onRestoreInstanceState(savedInstanceState);
+
+            //store booking name
+            String name = editText1.getText().toString();
+            savedInstanceState.putString(AppHand.NAME,name);
+
+        }
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(this, MainMenu.class);
+
+        if( v == submit){
+            //submit();
+            this.startActivity(intent);
+
+        }
+    }
+    */
 }
+

@@ -17,7 +17,7 @@
             android:layout_weight="0.04"
             android:textStyle="bold"
             android:textSize="20dp"
-            android:textColor="@android:color/black" />
+            android:textColor="@color/catamount_gold" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -38,7 +38,7 @@
             android:id="@+id/textView5"
             android:textStyle="bold"
             android:textSize="20dp"
-            android:textColor="@android:color/black"
+            android:textColor="@color/catamount_gold"
             android:layout_alignTop="@+id/bank_counter"
             android:layout_toLeftOf="@+id/bank_counter"
             android:layout_toStartOf="@+id/bank_counter" />
@@ -62,7 +62,7 @@
             android:id="@+id/player_name"
             android:textStyle="bold"
             android:textSize="30dp"
-            android:textColor="@android:color/black"
+            android:textColor="@color/catamount_gold"
             android:layout_below="@+id/view_hands_counter"
             android:layout_centerHorizontal="true"
             android:text="PLAYER&apos;s Hand:" />
