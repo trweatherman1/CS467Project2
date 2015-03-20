@@ -16,7 +16,7 @@
         android:layout_above="@+id/editText"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="42dp"
-        android:textColor="@android:color/white" />
+        android:textColor="@color/catamount_gold" />
 
     <Button
         android:layout_width="wrap_content"
@@ -26,7 +26,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="52dp"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/black" />
 
     <EditText
         android:layout_width="wrap_content"

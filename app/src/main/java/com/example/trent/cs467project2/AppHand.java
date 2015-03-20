@@ -8,4 +8,6 @@ public class AppHand {
             FOUROFAKIND = "Four of a Kind - $100", FULLHOUSE = "Full House - $50", FLUSH = "Flush - $30",
             STRAIGHTHAND = "Straight - $25", THREEOFAKIND = "Three of a Kind - $20",
             TWOPAIR = "2 Pair - $10", PAIR = "Pair - $5";
+
+    public static final String NAME = "name";
 }

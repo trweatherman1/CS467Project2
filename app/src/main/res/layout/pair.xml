@@ -13,7 +13,8 @@
         android:id="@+id/textView17"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.11"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:textColor="@color/catamount_gold" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -68,5 +69,6 @@
         android:id="@+id/textView20"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.11"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:textColor="@color/catamount_gold" />
 </LinearLayout>
