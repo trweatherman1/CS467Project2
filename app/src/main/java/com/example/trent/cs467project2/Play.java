@@ -26,7 +26,7 @@ public class Play extends Activity implements View.OnClickListener {
     TextView hand_counter, bank_counter;
     String card1, card2, card3, card4, card5;
     CardObject[] cards;
-    EditText editText;
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +83,8 @@ public class Play extends Activity implements View.OnClickListener {
         hand_counter.setText(int_hand_counter + "");
         bank_counter.setText(int_bank_counter + "");
 
-        editText = this.findViewById()
+        textView = (TextView) this.findViewById(R.id.player_name);
+        loadPrefs();
     }
 
     @Override
@@ -180,7 +181,6 @@ public class Play extends Activity implements View.OnClickListener {
         image5 = (ImageView) findViewById(R.id.card5);
 
         TypedArray images = getResources().obtainTypedArray(R.array.random_card);
-        int_hand_counter++;
 
         if (!hold1) {
             choice1 = (int) (Math.random() * images.length());
@@ -526,6 +526,6 @@ public class Play extends Activity implements View.OnClickListener {
     public void loadPrefs(){
         SharedPreferences settings = getSharedPreferences(AppHand.PREFS, Context.MODE_PRIVATE);
         String name = settings.getString(AppHand.NAME, "No Name");
-        editText1.setText(name);
+        textView.setText(name);
     }
 }
