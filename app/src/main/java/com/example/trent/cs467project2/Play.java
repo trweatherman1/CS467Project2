@@ -1,13 +1,16 @@
 package com.example.trent.cs467project2;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +26,7 @@ public class Play extends Activity implements View.OnClickListener {
     TextView hand_counter, bank_counter;
     String card1, card2, card3, card4, card5;
     CardObject[] cards;
+    EditText editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +82,8 @@ public class Play extends Activity implements View.OnClickListener {
 
         hand_counter.setText(int_hand_counter + "");
         bank_counter.setText(int_bank_counter + "");
+
+        editText = this.findViewById()
     }
 
     @Override
@@ -517,4 +523,9 @@ public class Play extends Activity implements View.OnClickListener {
         return( match_1 || match_2 || match_3 || match_4 );
     }
 
+    public void loadPrefs(){
+        SharedPreferences settings = getSharedPreferences(AppHand.PREFS, Context.MODE_PRIVATE);
+        String name = settings.getString(AppHand.NAME, "No Name");
+        editText1.setText(name);
+    }
 }
