@@ -16,7 +16,8 @@
         android:layout_above="@+id/editText"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="42dp"
-        android:textColor="@color/catamount_gold" />
+        android:textColor="@color/catamount_gold"
+        android:background="@color/material_blue_grey_900" />
 
     <Button
         android:layout_width="wrap_content"
@@ -27,7 +28,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="52dp"
         android:textColor="@color/catamount_gold"
-        android:background="@color/catamount_purple" />
+        android:background="@color/material_blue_grey_900" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -38,6 +39,8 @@
         android:id="@+id/editText"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/catamount_gold" />
+        android:textColor="@color/catamount_gold"
+        android:background="@color/material_blue_grey_900"
+        android:textColorHint="@color/catamount_gold" />
 
 </RelativeLayout>
