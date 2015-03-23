@@ -2,6 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.trent.cs467project2" >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+    <uses-feature
+        android:name="android.software.leanback"
+        android:required="true" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/poker"
@@ -40,6 +50,15 @@
         <activity
             android:name=".WinList"
             android:label="@string/title_activity_win_list"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name=".LargeScreen"
+            android:label="@string/title_activity_large_screen" >
+        </activity>
+        <activity
+            android:name=".PlayFragment"
+            android:label="@string/title_activity_play_fragment"
             android:screenOrientation="landscape">
         </activity>
     </application>

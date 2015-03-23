@@ -33,7 +33,7 @@ public class Play extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_play);
+        setContentView(R.layout.small_screen);
         new Thread(new Runnable() {
             public void run() {
                 image1 = (ImageView) findViewById(R.id.card1);
@@ -591,6 +591,7 @@ public class Play extends Activity implements View.OnClickListener {
 
     private boolean checkPair() {
         boolean match_1, match_2, match_3, match_4;
+
         match_1 = cards[0].getRank() == cards[1].getRank();
         match_2 = cards[1].getRank() == cards[2].getRank();
         match_3 = cards[2].getRank() == cards[3].getRank();
