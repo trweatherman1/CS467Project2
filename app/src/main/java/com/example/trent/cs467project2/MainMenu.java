@@ -1,5 +1,12 @@
 package com.example.trent.cs467project2;
 
+/**
+ * @author Cody Pero and Trent Weatherman
+ * @version 3/23/2015
+ *
+ * This file is used in correlation with a Poker Project for CS467
+ */
+
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;

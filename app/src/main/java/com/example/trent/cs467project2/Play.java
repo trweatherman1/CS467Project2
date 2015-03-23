@@ -6,10 +6,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -21,19 +19,25 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+/**
+ * @author Cody Pero and Trent Weatherman
+ * @version 3/23/2015
+ *
+ * This file is used in correlation with a Poker Project for CS467
+ */
 
 public class Play extends Activity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
-    Button menu_button, deal_button, win_button;
-    ImageView image1, image2, image3, image4, image5;
-    Boolean hold1, hold2, hold3, hold4, hold5, large;
-    Button hold_button1, hold_button2, hold_button3, hold_button4, hold_button5;
+    Button menu_button, deal_button, win_button; //The buttons on the activity_play screen
+    ImageView image1, image2, image3, image4, image5; //The imageViews for the cards on the screen
+    Boolean hold1, hold2, hold3, hold4, hold5; //Booleans to see if the hold button is pressed
+    Button hold_button1, hold_button2, hold_button3, hold_button4, hold_button5; //The buttons for hold
     int play_counter, int_hand_counter, int_bank_counter, choice1, choice2, choice3, choice4, choice5;
-    TextView hand_counter, bank_counter;
-    String card1, card2, card3, card4, card5;
-    CardObject[] cards;
-    int total_bank, current_bank;
-    TextView playerName;
+    TextView hand_counter, bank_counter; //The displays for the textView that we can update
+    String card1, card2, card3, card4, card5; //Our 5 cards
+    CardObject[] cards; //An array of CardObjects
+    int total_bank, current_bank; //Counters for the current total and bank
+    TextView playerName; //The playername passed from other screens
 
     private ArrayList<String> hands;
 
@@ -74,6 +78,9 @@ public class Play extends Activity implements View.OnClickListener, AdapterView.
             setContentView(R.layout.small_screen);
         }
         */
+        /**
+         * Sets the imageViews to default card backgrounds
+         */
         new Thread(new Runnable() {
             public void run() {
                 image1 = (ImageView) findViewById(R.id.card1);
@@ -88,16 +95,20 @@ public class Play extends Activity implements View.OnClickListener, AdapterView.
                 image5.setImageResource(R.drawable.back);
             }
         }).start();
+
+        //Set default booleans
         hold1 = false;
         hold2 = false;
         hold3 = false;
         hold4 = false;
         hold5 = false;
 
+        //Find view buttons
         menu_button = (Button) this.findViewById(R.id.menu_button);
         deal_button = (Button) this.findViewById(R.id.deal_button);
         win_button = (Button) this.findViewById(R.id.win_button);
 
+        //Set onClickListeners
         menu_button.setOnClickListener(this);
         deal_button.setOnClickListener(this);
         win_button.setOnClickListener(this);
@@ -129,13 +140,14 @@ public class Play extends Activity implements View.OnClickListener, AdapterView.
         playerName = (TextView) this.findViewById(R.id.player_name);
         load();
 
+        //Set to invisible for the default values
         hold_button1.setVisibility(View.INVISIBLE);
         hold_button2.setVisibility(View.INVISIBLE);
         hold_button3.setVisibility(View.INVISIBLE);
         hold_button4.setVisibility(View.INVISIBLE);
         hold_button5.setVisibility(View.INVISIBLE);
 
-
+        //Sets the listView
         hand = (TextView) this.findViewById(R.id.textView3);
 
         getListData();
@@ -658,16 +670,10 @@ public class Play extends Activity implements View.OnClickListener, AdapterView.
     private boolean checkFullHouse() {
         boolean match_1, match_2;
 
-      /* ------------------------------------------------------
-         Check for: x x x y y
-	 ------------------------------------------------------- */
         match_1 = cards[0].getRank() == cards[1].getRank() &&
                 cards[1].getRank() == cards[2].getRank() &&
                 cards[3].getRank() == cards[4].getRank();
 
-      /* ------------------------------------------------------
-         Check for: x x y y y
-	 ------------------------------------------------------- */
         match_2 = cards[0].getRank() == cards[1].getRank() &&
                 cards[2].getRank() == cards[3].getRank() &&
                 cards[3].getRank() == cards[4].getRank();

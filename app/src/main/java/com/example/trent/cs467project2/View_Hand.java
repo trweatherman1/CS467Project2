@@ -15,6 +15,13 @@ import com.example.trent.cs467project2.R;
 
 import java.util.ArrayList;
 
+/**
+ * @author Cody Pero and Trent Weatherman
+ * @version 3/23/2015
+ *
+ * This file is used in correlation with a Poker Project for CS467
+ */
+
 public class View_Hand extends Activity implements AdapterView.OnItemClickListener {
 
     private ArrayList<String> hands;

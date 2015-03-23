@@ -7,8 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * Created by Trent on 3/23/2015.
+ * @author Cody Pero and Trent Weatherman
+ * @version 3/23/2015
+ *
+ * This file is used in correlation with a Poker Project for CS467
  */
+
 public class SmallScreen extends Fragment {
 
     public SmallScreen(){

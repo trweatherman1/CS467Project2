@@ -1,7 +1,10 @@
 package com.example.trent.cs467project2;
 
 /**
- * Created by Trent on 3/19/2015.
+ * @author Cody Pero and Trent Weatherman
+ * @version 3/23/2015
+ *
+ * This file is used in correlation with a Poker Project for CS467
  */
 public class AppHand {
     public static final String ROYAL = "Royal Flush - $1000", STRAIGHTFLUSH = "Straight Flush - $250",

@@ -1,6 +1,5 @@
 package com.example.trent.cs467project2;
 
-//TODO Comment this
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +14,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/**
+ * @author Cody Pero and Trent Weatherman
+ * @version 3/23/2015
+ *
+ * This file is used in correlation with a Poker Project for CS467
+ */
 
 public class Player_Name extends Activity implements View.OnClickListener {
     Button submit;
