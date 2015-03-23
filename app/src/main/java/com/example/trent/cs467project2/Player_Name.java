@@ -35,7 +35,7 @@ public class Player_Name extends Activity implements View.OnClickListener {
 
     private void restore(Bundle savedInstanceState) {
         if (savedInstanceState != null) {
-            String name = savedInstanceState.getString(AppHand.NAME, "No Name");
+            String name = savedInstanceState.getString(AppHand.NAME, "");
             editText1.setText(name);
 
 
