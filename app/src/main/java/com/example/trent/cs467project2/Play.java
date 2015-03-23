@@ -239,7 +239,6 @@ public class Play extends Activity implements View.OnClickListener {
 
 
         if (play_counter == 2) {
-            //Toast.makeText(getApplicationContext(), "Good Game!", Toast.LENGTH_LONG).show();
             play_counter = 0;
             getWinner();
         }
