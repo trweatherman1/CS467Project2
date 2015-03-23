@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -49,10 +50,12 @@ public class Play extends Activity implements View.OnClickListener, AdapterView.
         setContentView(R.layout.large_screen);
 
         /*
-        if(largeScreen()) {
+        if ((getResources().getConfiguration().screenLayout &
+                Configuration.SCREENLAYOUT_SIZE_MASK) ==
+                Configuration.SCREENLAYOUT_SIZE_LARGE){
 
             setContentView(R.layout.large_screen);
-            /*
+
             hand = (TextView) this.findViewById(R.id.textView3);
 
             getListData();
@@ -65,7 +68,9 @@ public class Play extends Activity implements View.OnClickListener, AdapterView.
             lvCard.setAdapter(adapter);
         //
         }
-        else{
+        else if ((getResources().getConfiguration().screenLayout &
+                Configuration.SCREENLAYOUT_SIZE_MASK) ==
+        Configuration.SCREENLAYOUT_SIZE_SMALL){
             setContentView(R.layout.small_screen);
         }
         */
@@ -130,7 +135,7 @@ public class Play extends Activity implements View.OnClickListener, AdapterView.
         hold_button4.setVisibility(View.INVISIBLE);
         hold_button5.setVisibility(View.INVISIBLE);
 
-        ///*
+
         hand = (TextView) this.findViewById(R.id.textView3);
 
         getListData();
@@ -141,7 +146,7 @@ public class Play extends Activity implements View.OnClickListener, AdapterView.
 
         adapter = new CustomAdapter(this, R.layout.list_item, hands);
         lvCard.setAdapter(adapter);
-        //*/
+
 
     }
 
@@ -223,6 +228,7 @@ public class Play extends Activity implements View.OnClickListener, AdapterView.
         }
     }
 
+
     /*
     public boolean largeScreen() {
         //boolean large = false;
@@ -240,6 +246,7 @@ public class Play extends Activity implements View.OnClickListener, AdapterView.
             adapter = new CustomAdapter(this, R.layout.list_item, hands);
             lvCard.setAdapter(adapter);
 
+
             return true;
         }
         else {
@@ -247,6 +254,7 @@ public class Play extends Activity implements View.OnClickListener, AdapterView.
         }
     }
     */
+
 
     @Override
     public void onClick(View v) {

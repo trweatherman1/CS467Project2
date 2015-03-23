@@ -27,7 +27,7 @@
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/textView4"
             android:layout_toEndOf="@+id/textView4"
-            android:textColor="@android:color/black"
+            android:textColor="@color/catamount_gold"
             android:textSize="20dp"
             android:textStyle="bold" />
 
@@ -52,7 +52,7 @@
             android:layout_alignBottom="@+id/view_hands_counter"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:textColor="@android:color/black"
+            android:textColor="@color/catamount_gold"
             android:textSize="20dp"
             android:textStyle="bold" />
 
