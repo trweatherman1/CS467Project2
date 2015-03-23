@@ -1,16 +1,16 @@
 package com.example.trent.cs467project2;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,7 +26,8 @@ public class Play extends Activity implements View.OnClickListener {
     TextView hand_counter, bank_counter;
     String card1, card2, card3, card4, card5;
     CardObject[] cards;
-    TextView textView;
+    int total_bank, current_bank;
+    TextView playerName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,8 +84,17 @@ public class Play extends Activity implements View.OnClickListener {
         hand_counter.setText(int_hand_counter + "");
         bank_counter.setText(int_bank_counter + "");
 
-        textView = (TextView) this.findViewById(R.id.player_name);
-        loadPrefs();
+        total_bank = 0;
+
+        playerName = (TextView) this.findViewById(R.id.player_name);
+        load();
+
+        hold_button1.setVisibility(View.INVISIBLE);
+        hold_button2.setVisibility(View.INVISIBLE);
+        hold_button3.setVisibility(View.INVISIBLE);
+        hold_button4.setVisibility(View.INVISIBLE);
+        hold_button5.setVisibility(View.INVISIBLE);
+
     }
 
     @Override
@@ -101,7 +111,7 @@ public class Play extends Activity implements View.OnClickListener {
                 hold1 = !hold1;
                 if(hold1){
                     hold_button1.setText(R.string.hold);
-                } else{
+                } else {
                     hold_button1.setText(R.string.Throw);
                 }
             }
@@ -115,7 +125,7 @@ public class Play extends Activity implements View.OnClickListener {
                 hold2 = !hold2;
                 if(hold2){
                     hold_button2.setText(R.string.hold);
-                } else{
+                } else {
                     hold_button2.setText(R.string.Throw);
                 }
             }
@@ -128,7 +138,7 @@ public class Play extends Activity implements View.OnClickListener {
                 hold3 = !hold3;
                 if(hold3){
                     hold_button3.setText(R.string.hold);
-                } else{
+                } else {
                     hold_button3.setText(R.string.Throw);
                 }
             }
@@ -141,7 +151,7 @@ public class Play extends Activity implements View.OnClickListener {
                 hold4 = !hold4;
                 if(hold4){
                     hold_button4.setText(R.string.hold);
-                } else{
+                } else {
                     hold_button4.setText(R.string.Throw);
                 }
             }
@@ -154,7 +164,7 @@ public class Play extends Activity implements View.OnClickListener {
                 hold5 = !hold5;
                 if(hold5){
                     hold_button5.setText(R.string.hold);
-                } else{
+                } else {
                     hold_button5.setText(R.string.Throw);
                 }
             }
@@ -180,7 +190,14 @@ public class Play extends Activity implements View.OnClickListener {
         image4 = (ImageView) findViewById(R.id.card4);
         image5 = (ImageView) findViewById(R.id.card5);
 
+        hold_button1.setVisibility(View.VISIBLE);
+        hold_button2.setVisibility(View.VISIBLE);
+        hold_button3.setVisibility(View.VISIBLE);
+        hold_button4.setVisibility(View.VISIBLE);
+        hold_button5.setVisibility(View.VISIBLE);
+
         TypedArray images = getResources().obtainTypedArray(R.array.random_card);
+        int_hand_counter++;
 
         if (!hold1) {
             choice1 = (int) (Math.random() * images.length());
@@ -189,36 +206,56 @@ public class Play extends Activity implements View.OnClickListener {
         }
         if (!hold2) {
             choice2 = (int) (Math.random() * images.length());
+            while(choice2 == choice1){
+                choice2 = (int) (Math.random() * images.length());
+            }
             image2.setImageResource(images.getResourceId(choice2, R.drawable.ace_of_clubs));
             card2 = images.getString(choice2);
         }
         if (!hold3) {
             choice3 = (int) (Math.random() * images.length());
+            while(choice3 == choice1 || choice3 == choice2){
+                choice3 = (int) (Math.random() * images.length());
+            }
             image3.setImageResource(images.getResourceId(choice3, R.drawable.ace_of_clubs));
             card3 = images.getString(choice3);
         }
         if (!hold4) {
             choice4 = (int) (Math.random() * images.length());
+            while(choice4 == choice1 || choice4 == choice2 || choice4 == choice3){
+                choice4 = (int) (Math.random() * images.length());
+            }
             image4.setImageResource(images.getResourceId(choice4, R.drawable.ace_of_clubs));
             card4 = images.getString(choice4);
         }
         if (!hold5) {
             choice5 = (int) (Math.random() * images.length());
+            while(choice5 == choice1 || choice5 == choice2 || choice5 == choice3 ||
+                    choice5 == choice4){
+                choice5 = (int) (Math.random() * images.length());
+            }
             image5.setImageResource(images.getResourceId(choice5, R.drawable.ace_of_clubs));
             card5 = images.getString(choice5);
         }
         images.recycle();
         play_counter++;
         hand_counter.setText(int_hand_counter + "");
+        hold1 = false;
+        hold2 = false;
+        hold3 = false;
+        hold4 = false;
+        hold5 = false;
+
+        hold_button1.setText(R.string.Throw);
+        hold_button2.setText(R.string.Throw);
+        hold_button3.setText(R.string.Throw);
+        hold_button4.setText(R.string.Throw);
+        hold_button5.setText(R.string.Throw);
+
 
         if (play_counter == 2) {
             //Toast.makeText(getApplicationContext(), "Good Game!", Toast.LENGTH_LONG).show();
             play_counter = 0;
-            hold1 = false;
-            hold2 = false;
-            hold3 = false;
-            hold4 = false;
-            hold5 = false;
             getWinner();
         }
     }
@@ -227,22 +264,39 @@ public class Play extends Activity implements View.OnClickListener {
         getCardNames();
         sortByRank();
         if(checkRoyalFlush()){
-            Toast.makeText(this, "ROYAL FLUSH", Toast.LENGTH_SHORT).show();
+            current_bank = 1000;
+            displayDialog("You won $1000 with a Royal Flush!");
         } else if(checkStraightFlush()) {
-            Toast.makeText(this, "STRAIGHT FLUSH", Toast.LENGTH_SHORT).show();
+            current_bank = 250;
+            displayDialog("You won $250 with a Straight Flush!");
         } else if(checkFourOfAKind()) {
-            Toast.makeText(this, "FOUR OF A KIND", Toast.LENGTH_SHORT).show();
+            current_bank = 100;
+            displayDialog("You won $100 with 4 of a Kind!");
         } else if(checkFullHouse()) {
-            Toast.makeText(this, "FULL HOUSE", Toast.LENGTH_SHORT).show();
+            current_bank = 50;
+            displayDialog("You won $50 with a Full House!");
+        } else if(checkFlush()) {
+            current_bank = 30;
+            displayDialog("You won $30 with a Flush!");
         } else if(checkStraight()) {
-            Toast.makeText(this, "STRAIGHT", Toast.LENGTH_SHORT).show();
+            current_bank = 25;
+            displayDialog("You won $25 with a Straight!");
         } else if(checkThreeOfAKind()) {
-            Toast.makeText(this, "THREE OF A KIND", Toast.LENGTH_SHORT).show();
+            current_bank = 20;
+            displayDialog("You won $20 with 3 of a Kind!");
         } else if(checkTwoPair()) {
-            Toast.makeText(this, "TWO PAIR", Toast.LENGTH_SHORT).show();
+            current_bank = 10;
+            displayDialog("You won $10 with Two Pair!");
         } else if(checkPair()) {
-            Toast.makeText(this, "PAIR", Toast.LENGTH_SHORT).show();
+            current_bank = 5;
+            displayDialog("You won $5 with a Pair!");
+        } else {
+            current_bank = 0;
+            displayDialog("Sorry, you lost!");
         }
+
+        total_bank += current_bank;
+        bank_counter.setText(total_bank + "");
     }
 
     private void getCardNames(){
@@ -380,129 +434,176 @@ public class Play extends Activity implements View.OnClickListener {
         }
     }
 
+
+
     private boolean checkRoyalFlush(){
         String suit = cards[0].getSuit();
         int counter = 0;
         boolean isTrue = true;
         while(isTrue && counter < cards.length){
-            if(suit.equals(cards[0].getSuit())){
+            if(suit.equals(cards[counter].getSuit())){
                 isTrue = true;
             }
             else {
                 isTrue = false;
             }
-        }
-        if(isTrue){
-            counter = 0;
-            while (counter < (cards.length - 1) && isTrue){
-                if(cards[counter+1].getRank() - cards[counter].getRank() != 1)
-                    isTrue = false;
-            }
+            counter++;
         }
         if(isTrue){
             if(cards[0].getRank() != 1)
-                isTrue = false;
+                return false;
             if(cards[1].getRank() != 10)
-                isTrue = false;
+                return false;
             if(cards[2].getRank() != 11)
-                isTrue = false;
+                return false;
             if(cards[3].getRank() != 12)
-                isTrue = false;
+                return false;
             if(cards[4].getRank() != 13)
-                isTrue = false;
+                return false;
         }
         return isTrue;
     }
 
     private boolean checkStraightFlush(){
-        String suit = cards[0].getSuit();
+        int i, testRank;
+        boolean checkSuit = true;
         int counter = 0;
-        boolean isTrue = true;
-        while(isTrue && counter < cards.length){
-            if(suit.equals(cards[0].getSuit())){
-                isTrue = true;
+        String suit = cards[0].getSuit();
+
+        while(checkSuit && counter < cards.length){
+            if(suit.equals(cards[counter].getSuit())){
+                checkSuit = true;
             }
             else {
-                isTrue = false;
+                checkSuit = false;
             }
+            counter++;
         }
-        if(isTrue){
-            counter = 0;
-            while (counter < (cards.length - 1) && isTrue){
-                if(cards[counter+1].getRank() - cards[counter].getRank() != 1)
-                    isTrue = false;
+        if ( cards[0].getRank() == 1 )
+        {
+            boolean a = cards[1].getRank() == 2 && cards[2].getRank() == 3 &&
+                    cards[3].getRank() == 4 && cards[4].getRank() == 5 ;
+            boolean b = cards[1].getRank() == 10 && cards[2].getRank() == 11 &&
+                    cards[3].getRank() == 12 && cards[4].getRank() == 13 ;
+
+            return ( a || b );
+        }
+        else
+        {
+
+            testRank = cards[0].getRank() + 1;
+
+            for ( i = 1; i < 5; i++ )
+            {
+                if (cards[i].getRank() != testRank)
+                    return false;
+
+                testRank++;
             }
+
+            return true;
         }
-        return isTrue;
     }
 
     private boolean checkFourOfAKind(){
-        boolean isTrue = true;
-        int num_match = 0;
-        for(int counter = 0; counter < cards.length-1; counter++){
-            if(cards[counter].getRank() == cards[counter+1].getRank())
-                num_match++;
-        }
-        if(num_match != 4)
-            isTrue = false;
-        return isTrue;
+
+        boolean match_1, match_2;
+
+        match_1 = cards[0].getRank() == cards[1].getRank() &&
+                cards[1].getRank() == cards[2].getRank() &&
+                cards[2].getRank() == cards[3].getRank();
+
+        match_2 = cards[1].getRank() == cards[2].getRank() &&
+                cards[2].getRank() == cards[3].getRank() &&
+                cards[3].getRank() == cards[4].getRank() ;
+
+        return ( match_1 || match_2 );
     }
+
     private boolean checkFullHouse(){
-        if(cards[0].getRank() == cards[1].getRank()){
-            if(cards[2].getRank() == cards[3].getRank()){
-                if(cards[3].getRank() == cards[4].getRank()){
-                    return true;
-                }
-            }
-            if(cards[1].getRank() == cards[2].getRank()){
-                if(cards[3].getRank() == cards[4].getRank()){
-                    return true;
-                }
-            }
-        }
-        return false;
+        boolean match_1, match_2;
+
+      /* ------------------------------------------------------
+         Check for: x x x y y
+	 ------------------------------------------------------- */
+        match_1 = cards[0].getRank() == cards[1].getRank() &&
+                cards[1].getRank() == cards[2].getRank() &&
+                cards[3].getRank() == cards[4].getRank();
+
+      /* ------------------------------------------------------
+         Check for: x x y y y
+	 ------------------------------------------------------- */
+        match_2 = cards[0].getRank() == cards[1].getRank() &&
+                cards[2].getRank() == cards[3].getRank() &&
+                cards[3].getRank() == cards[4].getRank();
+
+        return( match_1 || match_2 );
     }
+
     private boolean checkStraight(){
-        int num_match = 0;
-        for(int counter = 0; counter < cards.length; counter++){
-            if(cards[0].getSuit().equals(cards[counter].getSuit()))
-                num_match++;
+        int i, testRank;
+        if ( cards[0].getRank() == 1 )
+        {
+            boolean a = cards[1].getRank() == 2 && cards[2].getRank() == 3 &&
+                    cards[3].getRank() == 4 && cards[4].getRank() == 5 ;
+            boolean b = cards[1].getRank() == 10 && cards[2].getRank() == 11 &&
+                    cards[3].getRank() == 12 && cards[4].getRank() == 13 ;
+
+            return ( a || b );
         }
-        if(num_match == 5)
+        else
+        {
+
+            testRank = cards[0].getRank() + 1;
+
+            for ( i = 1; i < 5; i++ )
+            {
+                if (cards[i].getRank() != testRank)
+                    return false;
+
+                testRank++;
+            }
+
             return true;
-        return false;
+        }
     }
-    private boolean checkThreeOfAKind(){
-        int num_match = 0;
-        for(int counter = 0; counter < cards.length; counter++){
-            if(cards[0].getRank() == cards[counter].getRank()){
-                num_match++;
-            }
-        }
-        if(num_match == 3){
-            return true;
-        }
-        else{
-            for (int counter = 0; counter < cards.length; counter++){
-                if(cards[1].getRank() == cards[counter].getRank()){
-                    num_match++;
-                }
-            }
-            if(num_match == 3){
-                return true;
+
+    private boolean checkFlush(){
+        boolean checkSuit = true;
+        int counter = 0;
+        String suit = cards[0].getSuit();
+
+        while(checkSuit && counter < cards.length){
+            if(suit.equals(cards[counter].getSuit())){
+                checkSuit = true;
             }
             else {
-                for (int counter = 0; counter < cards.length; counter++){
-                    if(cards[2].getRank() == cards[counter].getRank()){
-                        num_match++;
-                    }
-                }
-                if(num_match == 3){
-                    return true;
-                }
+                checkSuit = false;
             }
+            counter++;
         }
-        return false;
+        return checkSuit;
+    }
+
+    private boolean checkThreeOfAKind(){
+        boolean match_1, match_2, match_3;
+        match_1 = cards[0].getRank() == cards[1].getRank()  &&
+                cards[1].getRank()  == cards[2].getRank()  &&
+                cards[3].getRank()  != cards[0].getRank() &&
+                cards[4].getRank() != cards[0].getRank() &&
+                cards[3].getRank() != cards[4].getRank() ;
+        match_2 = cards[1].getRank() == cards[2].getRank() &&
+                cards[2].getRank() == cards[3].getRank() &&
+                cards[0].getRank() != cards[1].getRank() &&
+                cards[4].getRank() != cards[1].getRank() &&
+                cards[0].getRank() != cards[4].getRank() ;
+        match_3 = cards[2].getRank() == cards[3].getRank() &&
+                cards[3].getRank() == cards[4].getRank() &&
+                cards[0].getRank() != cards[2].getRank() &&
+                cards[1].getRank() != cards[2].getRank() &&
+                cards[0].getRank() != cards[1].getRank() ;
+
+        return( match_1 || match_2 || match_3 );
     }
     private boolean checkTwoPair(){
         boolean match_1, match_2, match_3;
@@ -522,10 +623,34 @@ public class Play extends Activity implements View.OnClickListener {
         match_4 = cards[3].getRank() == cards[4].getRank();
         return( match_1 || match_2 || match_3 || match_4 );
     }
+    private void displayDialog(String string){
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+        builder1.setMessage(string + " Play again?");
+        builder1.setCancelable(true);
+        builder1.setPositiveButton("Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        image1.setImageResource(R.drawable.back);
+                        image2.setImageResource(R.drawable.back);
+                        image3.setImageResource(R.drawable.back);
+                        image4.setImageResource(R.drawable.back);
+                        image5.setImageResource(R.drawable.back);
+                    }
+                });
+        builder1.setNegativeButton("No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finish();
+                    }
+                });
 
-    public void loadPrefs(){
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+    }
+
+    public void load(){
         SharedPreferences settings = getSharedPreferences(AppHand.PREFS, Context.MODE_PRIVATE);
         String name = settings.getString(AppHand.NAME, "No Name");
-        textView.setText(name);
+        playerName.setText(name);
     }
 }
