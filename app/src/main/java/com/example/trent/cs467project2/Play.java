@@ -6,21 +6,26 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 
 
-public class Play extends Activity implements View.OnClickListener {
+public class Play extends Activity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
     Button menu_button, deal_button, win_button;
     ImageView image1, image2, image3, image4, image5;
-    Boolean hold1, hold2, hold3, hold4, hold5;
+    Boolean hold1, hold2, hold3, hold4, hold5, large;
     Button hold_button1, hold_button2, hold_button3, hold_button4, hold_button5;
     int play_counter, int_hand_counter, int_bank_counter, choice1, choice2, choice3, choice4, choice5;
     TextView hand_counter, bank_counter;
@@ -29,11 +34,41 @@ public class Play extends Activity implements View.OnClickListener {
     int total_bank, current_bank;
     TextView playerName;
 
+    private ArrayList<String> hands;
+
+    private TextView hand;
+
+    private ListView lvCard;
+
+    ArrayAdapter<String> adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.small_screen);
+        setContentView(R.layout.large_screen);
+
+        /*
+        if(largeScreen()) {
+
+            setContentView(R.layout.large_screen);
+            /*
+            hand = (TextView) this.findViewById(R.id.textView3);
+
+            getListData();
+
+            lvCard = (ListView) findViewById(R.id.listView);
+
+            lvCard.setOnItemClickListener(this);
+
+            adapter = new CustomAdapter(this, R.layout.list_item, hands);
+            lvCard.setAdapter(adapter);
+        //
+        }
+        else{
+            setContentView(R.layout.small_screen);
+        }
+        */
         new Thread(new Runnable() {
             public void run() {
                 image1 = (ImageView) findViewById(R.id.card1);
@@ -95,8 +130,123 @@ public class Play extends Activity implements View.OnClickListener {
         hold_button4.setVisibility(View.INVISIBLE);
         hold_button5.setVisibility(View.INVISIBLE);
 
+        ///*
+        hand = (TextView) this.findViewById(R.id.textView3);
+
+        getListData();
+
+        lvCard = (ListView) findViewById(R.id.listView);
+
+        lvCard.setOnItemClickListener(this);
+
+        adapter = new CustomAdapter(this, R.layout.list_item, hands);
+        lvCard.setAdapter(adapter);
+        //*/
 
     }
+
+    public void getListData() {
+
+        hands = new ArrayList<String>();
+        hands.add(getString(R.string.royal_flush));
+        hands.add(getString(R.string.straight_flush));
+        hands.add(getString(R.string.four_of_a_kind));
+        hands.add(getString(R.string.full_house));
+        hands.add(getString(R.string.flush));
+        hands.add(getString(R.string.straight_hand));
+        hands.add(getString(R.string.three_of_a_kind));
+        hands.add(getString(R.string.two_pair));
+        hands.add(getString(R.string.pair));
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        Intent intent;
+        TextView text = (TextView) view.findViewById(R.id.textView3);
+        String handName = text.getText().toString();
+        switch (handName) {
+
+            case AppHand.ROYAL:
+                intent = new Intent(this, WinList.class);
+                intent.putExtra(AppHand.ROYAL, handName);
+                startActivity(intent);
+                break;
+
+            case AppHand.STRAIGHTFLUSH:
+                intent = new Intent(this, WinList.class);
+                intent.putExtra(AppHand.STRAIGHTFLUSH, handName);
+                startActivity(intent);
+                break;
+
+            case AppHand.FOUROFAKIND:
+                intent = new Intent(this, WinList.class);
+                intent.putExtra(AppHand.FOUROFAKIND, handName);
+                startActivity(intent);
+                break;
+
+            case AppHand.FULLHOUSE:
+                intent = new Intent(this, WinList.class);
+                intent.putExtra(AppHand.FULLHOUSE, handName);
+                startActivity(intent);
+                break;
+
+            case AppHand.FLUSH:
+                intent = new Intent(this, WinList.class);
+                intent.putExtra(AppHand.FLUSH, handName);
+                startActivity(intent);
+                break;
+
+            case AppHand.STRAIGHTHAND:
+                intent = new Intent(this, WinList.class);
+                intent.putExtra(AppHand.STRAIGHTHAND, handName);
+                startActivity(intent);
+                break;
+
+            case AppHand.THREEOFAKIND:
+                intent = new Intent(this, WinList.class);
+                intent.putExtra(AppHand.THREEOFAKIND, handName);
+                startActivity(intent);
+                break;
+
+            case AppHand.TWOPAIR:
+                intent = new Intent(this, WinList.class);
+                intent.putExtra(AppHand.TWOPAIR, handName);
+                startActivity(intent);
+                break;
+
+            case AppHand.PAIR:
+                intent = new Intent(this, WinList.class);
+                intent.putExtra(AppHand.PAIR, handName);
+                startActivity(intent);
+                break;
+        }
+    }
+
+    /*
+    public boolean largeScreen() {
+        //boolean large = false;
+        if ((getResources().getConfiguration().screenLayout &
+                Configuration.SCREENLAYOUT_SIZE_MASK) ==
+                Configuration.SCREENLAYOUT_SIZE_LARGE) {
+            /*hand = (TextView) this.findViewById(R.id.textView3);
+
+            getListData();
+
+            lvCard = (ListView) findViewById(R.id.listView);
+
+            lvCard.setOnItemClickListener(this);
+
+            adapter = new CustomAdapter(this, R.layout.list_item, hands);
+            lvCard.setAdapter(adapter);
+
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    */
 
     @Override
     public void onClick(View v) {

@@ -30,6 +30,8 @@ public class MainMenu extends Activity implements View.OnClickListener {
 
     }
 
+
+
     @Override
     public void onClick(View v) {
         Intent option1 = new Intent(this, Player_Name.class);
